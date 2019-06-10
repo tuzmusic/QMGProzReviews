@@ -1,5 +1,6 @@
 // @flow
-
+import Sugar from "sugar";
+Sugar.extend();
 export default class Customer {
   constructor({
     id,
@@ -21,6 +22,10 @@ export default class Customer {
   }
   get fullName() {
     return [this.firstName, this.lastName].join(" ");
+  }
+  get averageRating() {
+    const ratings = this.reviews.map(r => r.rating);
+    return Sugar.Array.average(ratings);
   }
 
   static fromApi(json) {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 import {
   ThemeProvider,
   Text,
@@ -13,21 +13,39 @@ import User from "../models/User";
 class CustomerScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <ThemeProvider theme={theme}>
-          <Text h1>{customer.fullName}</Text>
-          <Text style={styles.detailText}>{customer.address}</Text>
-          <Text style={styles.detailText}>{customer.phone}</Text>
-          <Text style={styles.detailText}>{customer.email}</Text>
+          <CustomerInfo customer={customer} />
           <Divider style={styles.divider} />
           <Text h2>Reviews</Text>
           <ReviewsList reviews={customer.reviews} />
           <ReviewForm />
         </ThemeProvider>
-      </View>
+      </ScrollView>
     );
   }
 }
+
+const CustomerInfo = ({ customer }) => {
+  return (
+    <View>
+      <Text h1>{customer.fullName}</Text>
+      <Text style={styles.detailText}>{customer.address}</Text>
+      <Text style={styles.detailText}>{customer.phone}</Text>
+      <Text style={styles.detailText}>{customer.email}</Text>
+      <Text style={styles.detailText}> </Text>
+      <Text style={styles.detailText}>
+        Rating ({customer.reviews.length} reviews):{" "}
+      </Text>
+      <Rating
+        readonly
+        startingValue={customer.averageRating}
+        style={styles.rating}
+        imageSize={20}
+      />
+    </View>
+  );
+};
 
 const ReviewForm = props => {
   const styles = {
@@ -83,7 +101,8 @@ const styles = {
     backgroundColor: "black",
     height: 50
   },
-  detailText: { fontSize: 18, paddingTop: 5 }
+  detailText: { fontSize: 18, paddingTop: 5 },
+  rating: { padding: 5, alignItems: "flex-start" }
 };
 
 const theme = {
