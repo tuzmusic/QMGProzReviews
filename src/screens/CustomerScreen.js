@@ -1,23 +1,94 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-elements";
+import {
+  ThemeProvider,
+  Text,
+  Divider,
+  Rating,
+  Button
+} from "react-native-elements";
 import Customer from "../models/Customer";
+import User from "../models/User";
 
 class CustomerScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text h1>{customer.fullName}</Text>
+        <ThemeProvider theme={theme}>
+          <Text h1>{customer.fullName}</Text>
+          <Text style={styles.detailText}>{customer.address}</Text>
+          <Text style={styles.detailText}>{customer.phone}</Text>
+          <Text style={styles.detailText}>{customer.email}</Text>
+          <Divider style={styles.divider} />
+          <Text h2>Reviews</Text>
+          <ReviewsList reviews={customer.reviews} />
+          <ReviewForm />
+        </ThemeProvider>
       </View>
     );
   }
 }
 
+const ReviewForm = props => {
+  const styles = {
+    buttonContainer: {
+      alignItems: "center",
+      paddingTop: 20,
+      width: "100%"
+    }
+  };
+  return (
+    <View style={styles.buttonContainer}>
+      <Button title="Leave a Review" style={styles.button} />
+    </View>
+  );
+};
+
+const ReviewsList = ({ reviews }) => {
+  return reviews.map((review, i) => <Review review={review} key={i} />);
+};
+
+const Review = ({ review }) => {
+  const user = new User(review.user);
+  const styles = {
+    reviewContainer: { marginTop: 10, width: "100%" },
+    contentText: { fontStyle: "italic", fontSize: 18 },
+    userText: { fontSize: 18, textAlign: "right" },
+    rating: { padding: 5, alignItems: "flex-start" }
+  };
+  return (
+    <View style={styles.reviewContainer}>
+      <Rating
+        readonly
+        startingValue={review.rating}
+        style={styles.rating}
+        imageSize={20}
+      />
+      <Text style={styles.contentText}>{review.content}</Text>
+      <Text style={styles.userText}>– {user.fullName}</Text>
+    </View>
+  );
+};
+
 const styles = {
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    marginTop: 50,
+    marginLeft: 20,
+    marginRight: 20,
+    justifyContent: "flex-start",
+    alignItems: "flex-start"
+  },
+  divider: {
+    backgroundColor: "black",
+    height: 50
+  },
+  detailText: { fontSize: 18, paddingTop: 5 }
+};
+
+const theme = {
+  Text: {
+    color: "red"
   }
 };
 
@@ -34,14 +105,16 @@ const customer = new Customer({
         lastName: "Harris"
       },
       content: "John smith paid me on time and was a pleasure to work with",
-      datePosted: new Date("6-1-2013")
+      datePosted: new Date("6-1-2013"),
+      rating: 5
     },
     {
       user: {
         firstName: "Jonathan"
       },
       content: "John Smith is great!",
-      datePosted: new Date("6-1-2019")
+      datePosted: new Date("6-1-2019"),
+      rating: 5
     }
   ]
 });
