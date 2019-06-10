@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
-// import { Text } from "react-native-elements";
+import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-elements";
 import Customer from "../models/Customer";
 
 class CustomerScreen extends Component {
