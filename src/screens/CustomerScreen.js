@@ -81,8 +81,10 @@ const Review = ({ review }) => {
     reviewContainer: { marginTop: 10, width: "100%" },
     contentText: { fontStyle: "italic", fontSize: 18 },
     userText: { fontSize: 18, textAlign: "right" },
+    dateText: { fontSize: 18, textAlign: "left" },
     rating: { padding: 5, alignItems: "flex-start" }
   };
+  debugger;
   return (
     <View style={styles.reviewContainer}>
       <Rating
@@ -91,6 +93,7 @@ const Review = ({ review }) => {
         style={styles.rating}
         imageSize={20}
       />
+      <Text style={styles.dateText}>{review.timePast}</Text>
       <Text style={styles.contentText}>{review.content}</Text>
       <Text style={styles.userText}>– {user.fullName}</Text>
     </View>

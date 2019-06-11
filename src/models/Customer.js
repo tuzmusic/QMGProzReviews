@@ -1,6 +1,6 @@
 // @flow
 import Sugar from "sugar";
-Sugar.extend();
+
 export default class Customer {
   constructor({
     id,

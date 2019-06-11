@@ -1,7 +1,9 @@
 import Customer from "../src/models/Customer";
+import Review from "../src/models/Review";
 
 const customers = [
   {
+    id: 1,
     firstName: "John",
     lastName: "Smith",
     address: "55-57 59th St",
@@ -25,10 +27,35 @@ const customers = [
         datePosted: new Date("6-1-2019"),
         rating: 5
       }
-    ]
+    ].map(r => new Review(r))
+  },
+  {
+    id: 2,
+    firstName: "Albert",
+    lastName: "Dore",
+    address: "123 Main St",
+    phone: "098-765-5432",
+    email: "albert@site-example.com",
+    reviews: [
+      {
+        user: {
+          firstName: "Josh",
+          lastName: "Purses"
+        },
+        content: "Albert is the worst!",
+        datePosted: new Date("6-1-2013"),
+        rating: 1
+      },
+      {
+        user: {
+          firstName: "Jonathan"
+        },
+        content: "I hate this guy.",
+        datePosted: new Date("6-1-2019"),
+        rating: 3
+      }
+    ].map(r => new Review(r))
   }
 ];
 
-export default customers.map(c => {
-  return new Customer(c);
-});
+export default customers.map(c => new Customer(c));
