@@ -38,5 +38,5 @@ type CustomerAction =
 type CustomerState = {
   customers: Customer[],
   currentCustomer: Customer,
-  searchResults: Customer[]
+  searchResults: ?(Customer[])
 };

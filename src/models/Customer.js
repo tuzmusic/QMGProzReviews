@@ -1,23 +1,23 @@
 // @flow
+import type Review from "./Review";
 import Sugar from "sugar";
+
 export default class Customer {
-  constructor({
-    id,
-    firstName,
-    lastName,
-    address,
-    phone,
-    email,
-    reviews,
-    ...rest
-  }) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.address = address;
-    this.reviews = reviews;
-    this.phone = phone;
-    this.email = email;
+  id: number;
+  firstName: string;
+  lastName: string;
+  address: string;
+  phone: string;
+  email: string;
+  reviews: Review[];
+  constructor(obj: CustomerObject) {
+    this.id = obj.id;
+    this.firstName = obj.firstName;
+    this.lastName = obj.lastName;
+    this.address = obj.address;
+    this.reviews = obj.reviews;
+    this.phone = obj.phone;
+    this.email = obj.email;
   }
   get fullName() {
     return [this.firstName, this.lastName].join(" ");
@@ -27,9 +27,20 @@ export default class Customer {
     return Sugar.Array.average(ratings);
   }
 
-  static fromApi(json) {
+  static fromApi(json: OpenObject) {
     // reviews (and users) are probably represented in the api as links.
     // convert them here to objects? or not?
     return new Customer(json);
   }
 }
+
+type OpenObject = { [key: string]: any };
+type CustomerObject = {
+  id: number,
+  firstName: string,
+  lastName: string,
+  address: string,
+  phone: string,
+  email: string,
+  reviews: Review[]
+};
