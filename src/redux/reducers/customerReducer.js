@@ -21,10 +21,19 @@ export default function customerReducer(
   }
 }
 
-type CustomerAction = {
-  type: "CUSTOMER_SEARCH_SUCCESS",
-  results: Customer[]
-};
+type CustomerAction =
+  | {
+      type: "CUSTOMER_SEARCH_SUCCESS",
+      results: Customer[]
+    }
+  | {
+      type: "CUSTOMER_SEARCH_START",
+      searchParams: {
+        text: string,
+        searchField: string,
+        customers?: Customer[]
+      }
+    };
 
 type CustomerState = {
   customers: Customer[],

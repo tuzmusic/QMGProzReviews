@@ -1,17 +1,18 @@
 import reducer from "../src/redux/reducers/customerReducer";
 import Customer from "../src/models/Customer";
-import {
+import customerSaga, {
   searchCustomers,
   searchSaga,
   searchApi
 } from "../src/redux/actions/customerActions";
 import customers from "../__mocks__/customers";
+import SagaTester from "redux-saga-tester";
 import recordSaga from "../recordSaga";
 
 const text = "55-57 59th St";
 const searchField = "address";
 const searchParams = { text, searchField, customers };
-const startAction = { type: "SEARCH_CUSTOMERS_START", searchParams };
+const startAction = { type: "CUSTOMER_SEARCH_START", searchParams };
 const successAction = {
   type: "CUSTOMER_SEARCH_SUCCESS",
   results: [customers[0]]
@@ -24,7 +25,7 @@ describe("searchCustomers", () => {
 });
 
 describe("searchSaga", () => {
-  const initialAction = { type: "SEARCH_CUSTOMERS_START", searchParams };
+  const initialAction = { type: "CUSTOMER_SEARCH_START", searchParams };
   it("searches customers with a saga", async () => {
     const dispatched = await recordSaga(searchSaga, initialAction);
     expect(dispatched).toContainEqual(successAction);
@@ -60,5 +61,19 @@ describe("reducer", () => {
     expect(reducer(undefined, successAction).searchResults).toEqual(
       successAction.results
     );
+  });
+});
+
+describe("integration", () => {
+  let sagaStore;
+  beforeEach(() => {
+    sagaStore = new SagaTester({});
+    sagaStore.start(customerSaga);
+    jest.setTimeout(1000);
+  });
+  it("should perform a search and deliver the results", async () => {
+    sagaStore.dispatch(startAction);
+    await sagaStore.waitFor(successAction.type);
+    expect(sagaStore.getCalledActions()).toEqual([startAction, successAction]);
   });
 });

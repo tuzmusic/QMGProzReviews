@@ -1,8 +1,8 @@
-import { call, put, select } from "redux-saga/effects";
+import { call, put, select, takeEvery, all } from "redux-saga/effects";
 
 export function searchCustomers({ text, customers, searchField }) {
   return {
-    type: "SEARCH_CUSTOMERS_START",
+    type: "CUSTOMER_SEARCH_START",
     searchParams: { text, customers, searchField }
   };
 }
@@ -24,4 +24,12 @@ export function* searchSaga({ searchParams }) {
 
 export function searchApi({ text, customers, searchField }) {
   return customers.filter(c => c[searchField] === text);
+}
+
+function* watchSearch() {
+  yield takeEvery("CUSTOMER_SEARCH_START", searchSaga);
+}
+
+export default function* customerSaga() {
+  yield all([watchSearch()]);
 }
