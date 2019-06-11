@@ -9,8 +9,7 @@ export function searchCustomers({ text, customers, searchField }) {
 
 export function* searchSaga({ searchParams }) {
   try {
-    const { text, customers, searchField } = searchParams;
-    const results = customers.filter(c => c[searchField] === text);
+    const results = searchApi(searchParams);
     yield put({
       type: "CUSTOMER_SEARCH_SUCCESS",
       results
@@ -21,4 +20,8 @@ export function* searchSaga({ searchParams }) {
       error
     });
   }
+}
+
+export function searchApi({ text, customers, searchField }) {
+  return customers.filter(c => c[searchField] === text);
 }
