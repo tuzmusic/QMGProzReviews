@@ -1,4 +1,6 @@
 {
   "flow.useNPMPackagedFlow": true,
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "javascript.validate.enable": false,
+  "javascript.format.enable": false
 }

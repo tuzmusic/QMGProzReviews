@@ -1,6 +1,6 @@
 // @flow
 
-import Customer from "../../models/Customer";
+import type Customer from "../../models/Customer";
 import customers from "../../../__mocks__/customers";
 
 const initialState = {
@@ -9,7 +9,10 @@ const initialState = {
   searchResults: []
 };
 
-export default function customerReducer(state = initialState, action) {
+export default function customerReducer(
+  state: CustomerState = initialState,
+  action: CustomerAction
+) {
   switch (action.type) {
     case "CUSTOMER_SEARCH_SUCCESS":
       return { ...state, searchResults: action.results };
@@ -17,3 +20,14 @@ export default function customerReducer(state = initialState, action) {
       return state;
   }
 }
+
+type CustomerAction = {
+  type: "CUSTOMER_SEARCH_SUCCESS",
+  results: Customer[]
+};
+
+type CustomerState = {
+  customers: Customer[],
+  currentCustomer: Customer,
+  searchResults: Customer[]
+};
