@@ -10,6 +10,7 @@ export default class Customer {
   phone: string;
   email: string;
   reviews: Review[];
+
   constructor(obj: CustomerObject) {
     this.id = obj.id;
     this.firstName = obj.firstName;
