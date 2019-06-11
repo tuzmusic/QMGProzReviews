@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Text } from "react-native-elements";
 import { connect } from "react-redux";
-import Sugar, { String } from "sugar";
-Sugar.extend();
+import pluralize from "pluralize";
 
 export class CustomerSearchResultScreen extends Component {
   constructor(props) {
@@ -13,7 +12,6 @@ export class CustomerSearchResultScreen extends Component {
 
   render() {
     const { results } = this.props;
-    console.log(results);
 
     if (!results.length) {
       return (
@@ -24,8 +22,14 @@ export class CustomerSearchResultScreen extends Component {
     } else {
       return (
         <View style={styles.container}>
-          <Text>Results go here</Text>
-          <Text>{results.length}</Text>
+          <Text>Found {pluralize("result", results.length, true)}:</Text>
+          {results.map(c => {
+            return (
+              <TouchableOpacity key={c.id} onPress={() => console.log("click")}>
+                <Text>{c.fullName}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
       );
     }
