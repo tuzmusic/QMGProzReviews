@@ -1,3 +1,4 @@
+import reducer from "../src/redux/reducers/customerReducer";
 import Customer from "../src/models/Customer";
 import {
   searchCustomers,
@@ -5,21 +6,7 @@ import {
   searchApi
 } from "../src/redux/actions/customerActions";
 import customers from "../__mocks__/customers";
-import { runSaga } from "redux-saga";
-
-export async function recordSaga(saga, initialAction) {
-  const dispatched = [];
-
-  await runSaga(
-    { dispatch: action => dispatched.push(action) },
-    saga,
-    initialAction
-  ).done;
-
-  return dispatched;
-}
-
-beforeEach(() => jest.resetAllMocks());
+import recordSaga from "../recordSaga";
 
 const text = "55-57 59th St";
 const searchField = "address";
@@ -67,7 +54,7 @@ describe("searchApi", () => {
     expect(customersFromResult).toContainEqual(customers[0]);
   });
 });
-import reducer from "../src/redux/reducers/customerReducer";
+
 describe("reducer", () => {
   it("takes a search success action and returns the state with the results", () => {
     expect(reducer(undefined, successAction).searchResults).toEqual(
