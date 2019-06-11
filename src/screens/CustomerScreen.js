@@ -6,7 +6,7 @@ import Customer from "../models/Customer";
 import ReviewForm from "../subviews/ReviewForm";
 import Review from "../subviews/ReviewView";
 
-class CustomerScreen extends Component {
+export class CustomerScreen extends Component {
   render() {
     const { customer } = this.props;
     return (
@@ -52,7 +52,7 @@ const CustomerInfo = ({ customer }) => {
   );
 };
 
-const ReviewsList = ({ reviews }) => {
+export const ReviewsList = ({ reviews }) => {
   return reviews.map((review, i) => <Review review={review} key={i} />);
 };
 
