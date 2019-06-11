@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { StyleSheet, ScrollView, View } from "react-native";
-import {
-  ThemeProvider,
-  Text,
-  Divider,
-  Rating,
-  Button
-} from "react-native-elements";
+import { ThemeProvider, Text, Divider, Rating } from "react-native-elements";
 import Customer from "../models/Customer";
-import User from "../models/User";
 import ReviewForm from "../subviews/ReviewForm";
+import Review from "../subviews/ReviewView";
 
 class CustomerScreen extends Component {
   render() {
@@ -28,6 +22,7 @@ class CustomerScreen extends Component {
     );
   }
 }
+
 function mapStateToProps({ customers }) {
   return {
     customer: customers.currentCustomer
@@ -59,30 +54,6 @@ const CustomerInfo = ({ customer }) => {
 
 const ReviewsList = ({ reviews }) => {
   return reviews.map((review, i) => <Review review={review} key={i} />);
-};
-
-const Review = ({ review }) => {
-  const user = new User(review.user);
-  const styles = {
-    reviewContainer: { marginTop: 10, width: "100%" },
-    contentText: { fontStyle: "italic", fontSize: 18 },
-    userText: { fontSize: 18, textAlign: "right" },
-    dateText: { fontSize: 18, textAlign: "left" },
-    rating: { padding: 5, alignItems: "flex-start" }
-  };
-  return (
-    <View style={styles.reviewContainer}>
-      <Rating
-        readonly
-        startingValue={review.rating}
-        style={styles.rating}
-        imageSize={20}
-      />
-      <Text style={styles.dateText}>{review.timePast}</Text>
-      <Text style={styles.contentText}>{review.content}</Text>
-      <Text style={styles.userText}>– {user.fullName}</Text>
-    </View>
-  );
 };
 
 const styles = {
