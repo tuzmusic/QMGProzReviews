@@ -6,7 +6,7 @@ import customers from "../../../__mocks__/customers";
 const initialState = {
   customers,
   currentCustomer: customers[0],
-  searchResults: []
+  searchResults: null
 };
 
 export default function customerReducer(

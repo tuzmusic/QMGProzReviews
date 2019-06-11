@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import { Text, Input, Button } from "react-native-elements";
+import { Text, Input, Button, Overlay } from "react-native-elements";
 import { connect } from "react-redux";
 import { searchCustomers } from "../redux/actions/customerActions";
+import CustomerSearchResultScreen from "./CustomerSearchResultScreen";
 
 export class SearchCustomerScreen extends Component {
   state = {
@@ -11,11 +12,10 @@ export class SearchCustomerScreen extends Component {
   };
 
   handleSearch() {
-    const result = searchCustomers({
+    const result = this.props.searchCustomers({
       customers: this.props.customers,
       ...this.state
     });
-    console.log(result[0].fullName);
   }
 
   render() {
@@ -35,14 +35,19 @@ export class SearchCustomerScreen extends Component {
           type="outline"
           onPress={this.handleSearch.bind(this)}
         />
+        {this.props.searchResults && <CustomerSearchResultScreen />}
       </View>
     );
   }
 }
 
-export default connect(({ customers }) => ({ customers: customers.customers }))(
-  SearchCustomerScreen
-);
+export default connect(
+  ({ customers }) => ({
+    customers: customers.customers,
+    searchResults: customers.searchResults
+  }),
+  { searchCustomers }
+)(SearchCustomerScreen);
 
 const borderWidth = 0.5;
 const borderRadius = 30;
