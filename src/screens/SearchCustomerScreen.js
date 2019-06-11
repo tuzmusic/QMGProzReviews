@@ -15,6 +15,7 @@ export class SearchCustomerScreen extends Component {
       customers: this.props.customers,
       ...this.state
     });
+    console.log(result[0].fullName);
   }
 
   render() {
@@ -39,10 +40,9 @@ export class SearchCustomerScreen extends Component {
   }
 }
 
-export default connect(
-  ({ customers }) => ({ customers: customers.customers }),
-  { searchCustomers }
-)(SearchCustomerScreen);
+export default connect(({ customers }) => ({ customers: customers.customers }))(
+  SearchCustomerScreen
+);
 
 const borderWidth = 0.5;
 const borderRadius = 30;
