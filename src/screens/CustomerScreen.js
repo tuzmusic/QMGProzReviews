@@ -10,6 +10,7 @@ import {
 } from "react-native-elements";
 import Customer from "../models/Customer";
 import User from "../models/User";
+import ReviewForm from "../subviews/ReviewForm";
 
 class CustomerScreen extends Component {
   render() {
@@ -52,21 +53,6 @@ const CustomerInfo = ({ customer }) => {
         style={styles.rating}
         imageSize={20}
       />
-    </View>
-  );
-};
-
-const ReviewForm = props => {
-  const styles = {
-    buttonContainer: {
-      alignItems: "center",
-      paddingTop: 20,
-      width: "100%"
-    }
-  };
-  return (
-    <View style={styles.buttonContainer}>
-      <Button title="Leave a Review" style={styles.button} />
     </View>
   );
 };

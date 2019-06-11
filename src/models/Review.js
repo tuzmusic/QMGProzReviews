@@ -9,9 +9,6 @@ export default class Review {
     this.content = content;
     this.rating = rating;
     this.date = new Sugar.Date(date);
-    console.log(date);
-
-    console.log(this.date);
   }
 
   get timePast() {
