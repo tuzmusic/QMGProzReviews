@@ -5,12 +5,18 @@ import { connect } from "react-redux";
 
 export class SearchCustomerScreen extends Component {
   state = {
-    searchText: "",
-    searchBy: "address"
+    text: "",
+    searchField: "address"
   };
+
   handleSearch() {
-    console.log("Searching", this.state.searchText);
+    console.log("Searching", this.state.text);
+    this.searchCustomers({
+      customers: this.props.customers,
+      ...this.state
+    });
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -20,8 +26,8 @@ export class SearchCustomerScreen extends Component {
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}
           containerStyle={{ padding: 0 }}
-          value={this.state.searchText}
-          onChangeText={searchText => this.setState({ searchText })}
+          value={this.state.text}
+          onChangeText={text => this.setState({ text })}
         />
         <Button
           title="Search"
@@ -33,7 +39,9 @@ export class SearchCustomerScreen extends Component {
   }
 }
 
-export default connect()(SearchCustomerScreen);
+export default connect(({ customers }) => ({ customers: customers.customers }))(
+  SearchCustomerScreen
+);
 
 const borderWidth = 0.5;
 const borderRadius = 30;
