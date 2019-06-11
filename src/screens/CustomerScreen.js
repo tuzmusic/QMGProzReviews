@@ -10,15 +10,15 @@ export class CustomerScreen extends Component {
   render() {
     const { customer } = this.props;
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <ScrollView contentContainerStyle={styles.container}>
           <CustomerInfo customer={customer} />
           <Divider style={styles.divider} />
           <Text h2>Reviews</Text>
           <ReviewsList reviews={customer.reviews} />
           <ReviewForm />
-        </ThemeProvider>
-      </ScrollView>
+        </ScrollView>
+      </ThemeProvider>
     );
   }
 }
