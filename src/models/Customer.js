@@ -1,6 +1,5 @@
 // @flow
 import Sugar from "sugar";
-
 export default class Customer {
   constructor({
     id,

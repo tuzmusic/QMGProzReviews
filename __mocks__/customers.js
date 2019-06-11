@@ -16,7 +16,7 @@ const customers = [
           lastName: "Harris"
         },
         content: "John smith paid me on time and was a pleasure to work with",
-        datePosted: new Date("6-1-2013"),
+        date: new Date("6-1-2013"),
         rating: 5
       },
       {
@@ -24,7 +24,7 @@ const customers = [
           firstName: "Jonathan"
         },
         content: "John Smith is great!",
-        datePosted: new Date("6-1-2019"),
+        date: new Date("6-1-2019"),
         rating: 5
       }
     ].map(r => new Review(r))
@@ -43,7 +43,7 @@ const customers = [
           lastName: "Purses"
         },
         content: "Albert is the worst!",
-        datePosted: new Date("6-1-2013"),
+        date: new Date("6-1-2013"),
         rating: 1
       },
       {
@@ -51,7 +51,7 @@ const customers = [
           firstName: "Jonathan"
         },
         content: "I hate this guy.",
-        datePosted: new Date("6-1-2019"),
+        date: new Date("6-1-2019"),
         rating: 3
       }
     ].map(r => new Review(r))

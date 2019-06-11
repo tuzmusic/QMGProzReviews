@@ -84,7 +84,6 @@ const Review = ({ review }) => {
     dateText: { fontSize: 18, textAlign: "left" },
     rating: { padding: 5, alignItems: "flex-start" }
   };
-  debugger;
   return (
     <View style={styles.reviewContainer}>
       <Rating

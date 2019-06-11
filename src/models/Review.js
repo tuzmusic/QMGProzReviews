@@ -8,11 +8,14 @@ export default class Review {
     this.customer = customer;
     this.content = content;
     this.rating = rating;
-    this.date = date;
+    this.date = new Sugar.Date(date);
+    console.log(date);
+
+    console.log(this.date);
   }
 
   get timePast() {
-    return Sugar.Date.relative(this.date);
+    return this.date.relative().raw;
   }
 
   static fromApi(json) {
