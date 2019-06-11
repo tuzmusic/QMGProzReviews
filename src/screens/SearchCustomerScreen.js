@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { Text, Input, Button } from "react-native-elements";
 import { connect } from "react-redux";
+import { searchCustomers } from "../redux/actions/customerActions";
 
 export class SearchCustomerScreen extends Component {
   state = {
-    text: "",
+    text: "55-57 59th St",
     searchField: "address"
   };
 
   handleSearch() {
-    console.log("Searching", this.state.text);
-    this.searchCustomers({
+    const result = searchCustomers({
       customers: this.props.customers,
       ...this.state
     });
@@ -39,9 +39,10 @@ export class SearchCustomerScreen extends Component {
   }
 }
 
-export default connect(({ customers }) => ({ customers: customers.customers }))(
-  SearchCustomerScreen
-);
+export default connect(
+  ({ customers }) => ({ customers: customers.customers }),
+  { searchCustomers }
+)(SearchCustomerScreen);
 
 const borderWidth = 0.5;
 const borderRadius = 30;

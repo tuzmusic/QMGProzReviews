@@ -5,8 +5,8 @@ describe("searchCustomers", () => {
   it("searches customers by address", () => {
     const text = "55-57 59th St";
     const searchField = "address";
-    expect(searchCustomers({ text, customers, searchField })).toContain(
-      customers[0]
-    );
+    const result = searchCustomers({ text, customers, searchField });
+    expect(result.length).toBe(1);
+    expect(result).toContain(customers[0]);
   });
 });

@@ -2,7 +2,7 @@ import Customer from "../../models/Customer";
 import customers from "../../../__mocks__/customers";
 
 const initialState = {
-  customers: [customers],
+  customers,
   currentCustomer: customers[0]
 };
 
