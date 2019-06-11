@@ -69,12 +69,12 @@ const styles = {
     backgroundColor: "black",
     height: 50
   },
-  detailText: { fontSize: 18, paddingTop: 5 },
+  detailText: { paddingTop: 5 },
   rating: { padding: 5, alignItems: "flex-start" }
 };
 
 const theme = {
   Text: {
-    color: "red"
+    style: { fontSize: 18 }
   }
 };

@@ -8,9 +8,9 @@ export function searchCustomers({ text, customers, searchField }) {
 }
 
 export function* searchSaga({ searchParams }) {
-  const { text, customers, searchField } = searchParams;
-  const results = customers.filter(c => c[searchField] === text);
   try {
+    const { text, customers, searchField } = searchParams;
+    const results = customers.filter(c => c[searchField] === text);
     yield put({
       type: "CUSTOMER_SEARCH_SUCCESS",
       results

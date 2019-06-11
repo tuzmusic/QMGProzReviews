@@ -24,25 +24,32 @@ describe("searchCustomers", () => {
   const searchField = "address";
   const searchParams = { text, searchField, customers };
 
-  xit("searches customers by address", () => {
-    const result = searchCustomers({ text, customers, searchField });
-    expect(result.length).toBe(1);
-    expect(result).toContain(customers[0]);
-  });
-
   it("kicks off a redux action to start the search", () => {
     const expectedAction = { type: "SEARCH_CUSTOMERS_START", searchParams };
     expect(searchCustomers(searchParams)).toEqual(expectedAction);
   });
 
-  it("has a saga or whatever", async () => {
-    const initialAction = { type: "SEARCH_CUSTOMERS_START", searchParams };
+  const initialAction = { type: "SEARCH_CUSTOMERS_START", searchParams };
+  it("searches customers with a saga", async () => {
     const dispatched = await recordSaga(searchSaga, initialAction);
     const expectedAction = {
       type: "CUSTOMER_SEARCH_SUCCESS",
       results: [customers[0]]
     };
     expect(dispatched).toContainEqual(expectedAction);
+  });
+
+  fit("returns an error on a failure", async () => {
+    const error = new Error("uh oh!");
+    Array.prototype.filter = jest.fn();
+    Array.prototype.filter.mockImplementation(() => throw error);
+    try {
+      const dispatched = await recordSaga(searchSaga, initialAction);
+    } catch (e) {
+      console.log(dispatched);
+      const expectedAction = { type: "CUSTOMER_SEARCH_FAILURE", error };
+      expect(dispatched).toContainEqual(expectedAction);
+    }
   });
 
   xit("should fail if not authenticated", async () => {
