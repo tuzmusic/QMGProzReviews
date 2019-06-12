@@ -15,11 +15,12 @@ export class SearchCustomerScreen extends Component {
     searchField: "address"
   };
 
-  handleSearch() {
-    const result = this.props.searchCustomers({
+  async handleSearch() {
+    const results = await this.props.searchCustomers({
       customers: this.props.customers,
       ...this.state
     });
+    this.props.navigation.navigate("Results"), { results };
   }
 
   clickCustomer(customer) {
@@ -43,11 +44,11 @@ export class SearchCustomerScreen extends Component {
           type="outline"
           onPress={this.handleSearch.bind(this)}
         />
-        {this.props.searchResults && (
+        {/* {this.props.searchResults && (
           <CustomerSearchResultScreen
             onCustomerClick={this.clickCustomer.bind(this)}
           />
-        )}
+        )} */}
       </View>
     );
   }
