@@ -14,6 +14,7 @@ export default class NewReviewScreen extends Component {
     console.log(this.state);
   }
   render() {
+    debugger;
     return (
       <View style={styles.container}>
         <View style={styles.ratingContainer}>
@@ -30,7 +31,6 @@ export default class NewReviewScreen extends Component {
           label={"Review"}
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}
-          clearButtonMode={"while-editing"}
           placeholder={"Enter your review"}
           value={this.state.text}
           onChangeText={text => this.setState({ text })}
@@ -39,7 +39,10 @@ export default class NewReviewScreen extends Component {
           numberOfLines={100}
           labelStyle={styles.ratingLabel}
         />
-        <Button title="Submit" onPress={this.handleSubmit.bind(this)} />
+        <View style={styles.buttonsContainer}>
+          <Button title="Submit" onPress={this.handleSubmit.bind(this)} />
+          <Button title="Cancel" type="outline" onPress={this.props.onCancel} />
+        </View>
       </View>
     );
   }
@@ -52,12 +55,18 @@ const styles = {
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    width: "100%"
+    width: "100%",
+    marginTop: 30
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "50%"
   },
   input: {
     borderColor: "grey",
     borderWidth: 0.5,
-    borderRadius: 10,
+    borderRadius: 5,
     paddingHorizontal: 10,
     paddingVertical: 10,
     height: 200

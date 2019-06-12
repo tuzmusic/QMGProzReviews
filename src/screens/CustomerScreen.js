@@ -13,15 +13,25 @@ import Review from "../subviews/ReviewView";
 import NewReviewScreen from "./NewReviewScreen";
 
 export class CustomerScreen extends Component {
+  state = { isReviewing: false };
   render() {
     const { customer } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
           <CustomerInfo customer={customer} />
-          <ReviewsList customer={customer} />
-          <ReviewButton />
-          <NewReviewScreen />
+          {!this.state.isReviewing ? (
+            <View style={{ width: "100%" }}>
+              <ReviewsList customer={customer} />
+              <ReviewButton
+                onPress={() => this.setState({ isReviewing: true })}
+              />
+            </View>
+          ) : (
+            <NewReviewScreen
+              onCancel={() => this.setState({ isReviewing: false })}
+            />
+          )}
         </ScrollView>
       </ThemeProvider>
     );
@@ -41,12 +51,13 @@ const CustomerInfo = ({ customer }) => {
   );
 };
 
-const ReviewButton = props => {
+const ReviewButton = ({ onPress }) => {
   return (
     <Button
       title="Leave a Review"
       style={styles.button}
       containerStyle={styles.buttonContainer}
+      onPress={onPress}
     />
   );
 };
@@ -54,7 +65,7 @@ const ReviewButton = props => {
 export const ReviewsList = ({ customer }) => {
   const { reviews, averageRating } = customer;
   return (
-    <View>
+    <View style={{ width: "100%" }}>
       <Text style={styles.detailText}>Rating ({reviews.length} reviews): </Text>
       <Rating
         readonly
@@ -72,11 +83,9 @@ export const ReviewsList = ({ customer }) => {
 };
 
 const styles = {
-  container: {
-    flex: 1,
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 20,
+  scrollView: {
+    margin: 20,
+    marginBottom: 100,
     justifyContent: "flex-start",
     alignItems: "flex-start"
   },
