@@ -5,8 +5,10 @@ import pluralize from "pluralize";
 
 export class CustomerSearchResultScreen extends Component {
   automate() {
-    const c = this.props.results[0];
-    this.props.onCustomerClick(c);
+    if (this.props.results.length) {
+      const c = this.props.results[0];
+      this.props.onCustomerClick(c);
+    }
   }
 
   componentDidMount() {

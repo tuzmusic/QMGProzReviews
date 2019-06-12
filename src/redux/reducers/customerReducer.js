@@ -5,7 +5,7 @@ import type Review from "../../models/Review";
 import customers from "../../../__mocks__/customers";
 
 const initialState = {
-  customers: customers || [],
+  customers: customers || {},
   currentCustomer: customers[0],
   searchResults: null
 };
@@ -18,7 +18,8 @@ export default function customerReducer(
     case "CUSTOMER_SEARCH_SUCCESS":
       return { ...state, searchResults: action.results };
     case "CUSTOMER_ADD_REVIEW_SUCCESS":
-      return { ...state };
+      const c = action.customer;
+      return { ...state, customers: { ...customers, [c.id]: c } };
     default:
       return state;
   }

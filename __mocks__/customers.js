@@ -84,9 +84,9 @@ customers.set(3, {
   ].map(r => new Review(r))
 });
 
-const customerObjects = [];
+const customerObjects = new Map();
 customers.forEach(c => {
-  customerObjects.push(new Customer(c));
+  customerObjects.set(c.id, new Customer(c));
 });
 
 export default customerObjects;
