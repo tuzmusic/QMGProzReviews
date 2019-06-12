@@ -3,7 +3,6 @@ import { View } from "react-native";
 import { Text, Input, Button, Overlay } from "react-native-elements";
 import { connect } from "react-redux";
 import { searchCustomers } from "../redux/actions/customerActions";
-import CustomerSearchResultScreen from "./CustomerSearchResultScreen";
 
 export class SearchCustomerScreen extends Component {
   static navigationOptions = () => ({
@@ -20,6 +19,7 @@ export class SearchCustomerScreen extends Component {
 
   state = {
     text: "55-57 59th St",
+    text: "123 Main St",
     searchField: "address"
   };
 

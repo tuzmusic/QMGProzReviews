@@ -5,6 +5,7 @@ import { ThemeProvider, Text, Divider, Rating } from "react-native-elements";
 import Customer from "../models/Customer";
 import ReviewForm from "../subviews/ReviewForm";
 import Review from "../subviews/ReviewView";
+import NewReviewScreen from "./NewReviewScreen";
 
 export class CustomerScreen extends Component {
   render() {
@@ -13,10 +14,11 @@ export class CustomerScreen extends Component {
       <ThemeProvider theme={theme}>
         <ScrollView contentContainerStyle={styles.container}>
           <CustomerInfo customer={customer} />
-          <Divider style={styles.divider} />
+          {/*  <Divider style={styles.divider} />
           <Text h2>Reviews</Text>
           <ReviewsList reviews={customer.reviews} />
-          <ReviewForm />
+          <ReviewForm /> */}
+          <NewReviewScreen />
         </ScrollView>
       </ThemeProvider>
     );
@@ -33,6 +35,13 @@ const CustomerInfo = ({ customer }) => {
       <Text style={styles.detailText}>{customer.phone}</Text>
       <Text style={styles.detailText}>{customer.email}</Text>
       <Text style={styles.detailText}> </Text>
+    </View>
+  );
+};
+
+export const ReviewsList = ({ reviews }) => {
+  return (
+    <View>
       <Text style={styles.detailText}>
         Rating ({customer.reviews.length} reviews):{" "}
       </Text>
@@ -42,18 +51,17 @@ const CustomerInfo = ({ customer }) => {
         style={styles.rating}
         imageSize={20}
       />
+      {reviews.map((review, i) => (
+        <Review review={review} key={i} />
+      ))}
     </View>
   );
-};
-
-export const ReviewsList = ({ reviews }) => {
-  return reviews.map((review, i) => <Review review={review} key={i} />);
 };
 
 const styles = {
   container: {
     flex: 1,
-    marginTop: 50,
+    marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
     justifyContent: "flex-start",
