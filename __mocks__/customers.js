@@ -1,7 +1,7 @@
 import Customer from "../src/models/Customer";
 import Review from "../src/models/Review";
 
-const customers = {
+export default customers = {
   1: new Customer({
     id: 1,
     firstName: "John",
@@ -76,5 +76,3 @@ const customers = {
     ].map(r => new Review(r))
   })
 };
-
-export default customers; //.map(c => new Customer(c));

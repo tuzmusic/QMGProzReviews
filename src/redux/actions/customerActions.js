@@ -22,14 +22,28 @@ export function* searchSaga({ searchParams }) {
   }
 }
 
+export function* reviewSaga({ customer }) {
+  try {
+    // const results = searchApi(searchParams);
+    yield put({
+      type: "CUSTOMER_ADD_REVIEW_SUCCESS",
+      customer
+    });
+  } catch (error) {
+    yield put({
+      type: "CUSTOMER_ADD_REVIEW_FAILURE",
+      error
+    });
+  }
+}
+
 export function searchApi({ text, customers, searchField }) {
   return Object.values(customers).filter(c => c[searchField] === text);
 }
 
-function* watchSearch() {
-  yield takeEvery("CUSTOMER_SEARCH_START", searchSaga);
-}
-
 export default function* customerSaga() {
-  yield all([watchSearch()]);
+  yield all([
+    yield takeEvery("CUSTOMER_SEARCH_START", searchSaga),
+    yield takeEvery("CUSTOMER_ADD_REVIEW_START", reviewSaga)
+  ]);
 }
