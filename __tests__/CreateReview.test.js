@@ -3,7 +3,9 @@ import customers from "../__mocks__/customers";
 import Review from "../src/models/Review";
 import Customer from "../src/models/Customer";
 import SagaTester from "redux-saga-tester";
-import customerSaga, { reviewSaga } from "../src/redux/actions/customerActions";
+import customerSaga, {
+  addReviewSaga
+} from "../src/redux/actions/customerActions";
 import recordSaga from "../recordSaga";
 
 const review = new Review({ content: "A mock review" });
@@ -34,9 +36,9 @@ describe("creating a review", () => {
   });
 });
 
-describe("reviewSaga", () => {
+describe("addReviewSaga", () => {
   it("adds a review to a customer with a saga", async () => {
-    const dispatched = await recordSaga(reviewSaga, startAction);
+    const dispatched = await recordSaga(addReviewSaga, startAction);
     expect(dispatched).toContainEqual(successAction);
   });
 });

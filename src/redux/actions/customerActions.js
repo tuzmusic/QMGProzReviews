@@ -22,7 +22,7 @@ export function* searchSaga({ searchParams }) {
   }
 }
 
-export function* reviewSaga({ customer }) {
+export function* addReviewSaga({ customer }) {
   try {
     // const results = searchApi(searchParams);
     yield put({
@@ -44,6 +44,6 @@ export function searchApi({ text, customers, searchField }) {
 export default function* customerSaga() {
   yield all([
     yield takeEvery("CUSTOMER_SEARCH_START", searchSaga),
-    yield takeEvery("CUSTOMER_ADD_REVIEW_START", reviewSaga)
+    yield takeEvery("CUSTOMER_ADD_REVIEW_START", addReviewSaga)
   ]);
 }
