@@ -23,13 +23,7 @@ export class CustomerScreen extends Component {
   }
 }
 
-function mapStateToProps({ customers }) {
-  return {
-    customer: customers.currentCustomer
-  };
-}
-
-export default connect(mapStateToProps)(CustomerScreen);
+export default connect()(CustomerScreen);
 
 const CustomerInfo = ({ customer }) => {
   return (

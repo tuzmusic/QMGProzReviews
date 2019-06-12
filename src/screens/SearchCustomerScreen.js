@@ -21,7 +21,7 @@ export class SearchCustomerScreen extends Component {
   }
 
   clickCustomer(customer) {
-    this.props.navigation.navigate("Customer");
+    this.props.navigation.navigate("Customer", { customer });
   }
 
   render() {
