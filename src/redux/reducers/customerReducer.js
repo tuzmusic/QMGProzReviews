@@ -14,12 +14,16 @@ export default function customerReducer(
   state: CustomerState = initialState,
   action: CustomerAction
 ) {
+  // console.log(action);
+
   switch (action.type) {
     case "CUSTOMER_SEARCH_SUCCESS":
       return { ...state, searchResults: action.results };
     case "CUSTOMER_ADD_REVIEW_SUCCESS":
       const c = action.customer;
-      return { ...state, customers: { ...customers, [c.id]: c } };
+      // console.log(c);
+
+      return { ...state, customers: { ...state.customers, [c.id]: c } };
     default:
       return state;
   }
@@ -46,7 +50,7 @@ type CustomerReviewAction = {
 };
 
 type CustomerState = {
-  customers: Customer[],
+  customers: { [key: number]: Customer },
   currentCustomer: Customer,
   searchResults: ?(Customer[])
 };

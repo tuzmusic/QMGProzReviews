@@ -4,7 +4,7 @@ import Review from "../src/models/Review";
 import Customer from "../src/models/Customer";
 
 const review = new Review({ content: "A mock review" });
-const customer = customers.get(1);
+const customer = customers[1];
 const initialState = { customers: { [customer.id]: customer } };
 
 const customerWithReview = new Customer({
@@ -20,16 +20,15 @@ const successAction = {
   customer: customerWithReview
 };
 
+// console.log(customer);
+// console.log(initialState.customers[1]);
+// console.log(stateWithReview.customers[1]);
+// console.log(successAction);
+
 describe("creating a review", () => {
   describe("reducer", () => {
     it("takes a submit review succcess action and returns the state with the updated customer", () => {
       expect(reducer(initialState, successAction)).toEqual(stateWithReview);
-    });
-
-    it("returns with a customer value that is a map", () => {
-      expect(
-        reducer(initialState, successAction).customers instanceof Map
-      ).toBe(true);
     });
   });
 });
