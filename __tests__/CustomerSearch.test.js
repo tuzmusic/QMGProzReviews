@@ -15,7 +15,7 @@ const searchParams = { text, searchField, customers };
 const startAction = { type: "CUSTOMER_SEARCH_START", searchParams };
 const successAction = {
   type: "CUSTOMER_SEARCH_SUCCESS",
-  results: [customers[0], customers[2]]
+  results: [customers[1], customers[3]]
 };
 
 describe("searchCustomers", () => {
@@ -25,9 +25,8 @@ describe("searchCustomers", () => {
 });
 
 describe("searchSaga", () => {
-  const initialAction = { type: "CUSTOMER_SEARCH_START", searchParams };
   it("searches customers with a saga", async () => {
-    const dispatched = await recordSaga(searchSaga, initialAction);
+    const dispatched = await recordSaga(searchSaga, startAction);
     expect(dispatched).toContainEqual(successAction);
   });
 
@@ -52,7 +51,7 @@ describe("searchApi", () => {
   it("performs the search on the database", () => {
     const apiResult = searchApi(searchParams);
     const customersFromResult = apiResult.map(c => new Customer.fromApi(c));
-    expect(customersFromResult).toContainEqual(customers[0]);
+    expect(customersFromResult).toContainEqual(customers[1]);
   });
 });
 

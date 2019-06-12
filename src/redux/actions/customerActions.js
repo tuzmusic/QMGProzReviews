@@ -23,7 +23,7 @@ export function* searchSaga({ searchParams }) {
 }
 
 export function searchApi({ text, customers, searchField }) {
-  return Array.from(customers.values()).filter(c => c[searchField] === text);
+  return Object.values(customers).filter(c => c[searchField] === text);
 }
 
 function* watchSearch() {
