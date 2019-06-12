@@ -8,6 +8,13 @@ export function searchCustomers({ text, customers, searchField }) {
   };
 }
 
+export function addNewReview(review) {
+  return {
+    type: "CUSTOMER_ADD_REVIEW_START",
+    review
+  };
+}
+
 export function* searchSaga({ searchParams }) {
   try {
     const results = searchApi(searchParams);

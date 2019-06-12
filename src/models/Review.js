@@ -4,8 +4,8 @@ import type User from "./User";
 
 export default class Review {
   id: number;
-  user: User;
-  customer: string;
+  user: User | { firstName: string, lastName: string };
+  customerId: number;
   content: string;
   rating: number;
   date: Sugar.Date;
@@ -13,10 +13,10 @@ export default class Review {
   constructor(obj: ReviewObject) {
     this.id = obj.id;
     this.user = obj.user;
-    this.customer = obj.customer;
+    this.customerId = obj.customerId;
     this.content = obj.content;
     this.rating = obj.rating;
-    this.date = new Sugar.Date(obj.date);
+    this.date = obj.date ? new Sugar.Date(obj.date) : new Sugar.Date();
   }
 
   get timePast() {
@@ -31,11 +31,11 @@ export default class Review {
 }
 type OpenObject = { [key: string]: any };
 
-type ReviewObject = {
+export type ReviewObject = {
   id: number,
-  user: User,
-  customer: string,
+  user: User | { firstName: string, lastName: string },
+  customerId: number,
   content: string,
   rating: number,
-  date: string
+  date?: string
 };

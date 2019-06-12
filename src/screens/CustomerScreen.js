@@ -14,6 +14,32 @@ import NewReviewScreen from "./NewReviewScreen";
 
 export class CustomerScreen extends Component {
   state = { isReviewing: false };
+
+  automate() {
+    this.cancelReview();
+  }
+  componentDidMount = () => {
+    this.automate();
+  };
+
+  createReview({ content, rating }) {
+    console.warn(
+      "Waiting to finish implementing add review UI until I pass review to action instead of customer"
+    );
+    return;
+    const review = new Review({
+      id: Math.floor(1000 + Math.random() * 9000),
+      user: { firstName: "Sample", lastName: "User" },
+      customerId: this.props.customer.id,
+      content,
+      rating
+    });
+  }
+
+  cancelReview() {
+    this.setState({ isReviewing: false });
+  }
+
   render() {
     const { customer } = this.props;
     return (
@@ -29,7 +55,8 @@ export class CustomerScreen extends Component {
             </View>
           ) : (
             <NewReviewScreen
-              onCancel={() => this.setState({ isReviewing: false })}
+              onCancel={this.cancelReview.bind(this)}
+              onSubmit={this.createReview.bind(this)}
             />
           )}
         </ScrollView>

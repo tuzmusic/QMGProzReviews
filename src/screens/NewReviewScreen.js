@@ -4,17 +4,12 @@ import { View, StyleSheet } from "react-native";
 
 export default class NewReviewScreen extends Component {
   state = {
-    text:
-      "If true, the text input can be multiple lines. The default value is false. It is important to note that this aligns the text to the top on iOS, and centers it on Android. Use with textAlignVertical set to top for the same behavior in both platforms.",
-    text: "",
-    rating: 5
+    content:
+      "If true, the content input can be multiple lines. The default value is false. It is important to note that this aligns the content to the top on iOS, and centers it on Android. Use with textAlignVertical set to top for the same behavior in both platforms.",
+    // content: "",
+    rating: 4
   };
-  rate(rating) {}
-  handleSubmit() {
-    console.log(this.state);
-  }
   render() {
-    debugger;
     return (
       <View style={styles.container}>
         <View style={styles.ratingContainer}>
@@ -32,15 +27,18 @@ export default class NewReviewScreen extends Component {
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}
           placeholder={"Enter your review"}
-          value={this.state.text}
-          onChangeText={text => this.setState({ text })}
+          value={this.state.content}
+          onChangeText={content => this.setState({ content })}
           multiline={true}
           textAlignVertical={"top"}
           numberOfLines={100}
           labelStyle={styles.ratingLabel}
         />
         <View style={styles.buttonsContainer}>
-          <Button title="Submit" onPress={this.handleSubmit.bind(this)} />
+          <Button
+            title="Submit"
+            onPress={() => this.props.onSubmit(this.state)}
+          />
           <Button title="Cancel" type="outline" onPress={this.props.onCancel} />
         </View>
       </View>
