@@ -4,6 +4,15 @@ import { Text } from "react-native-elements";
 import pluralize from "pluralize";
 
 export class CustomerSearchResultScreen extends Component {
+  automate() {
+    const c = this.props.results[0];
+    this.props.onCustomerClick(c);
+  }
+
+  componentDidMount() {
+    this.automate();
+  }
+
   render() {
     const { results } = this.props;
 

@@ -10,6 +10,14 @@ export class SearchCustomerScreen extends Component {
     headerTitle: "Search"
   });
 
+  automate() {
+    this.handleSearch();
+  }
+
+  componentDidMount = () => {
+    this.automate();
+  };
+
   state = {
     text: "55-57 59th St",
     searchField: "address"
