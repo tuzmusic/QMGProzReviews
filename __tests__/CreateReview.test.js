@@ -8,8 +8,12 @@ import customerSaga, {
 } from "../src/redux/actions/customerActions";
 import recordSaga from "../recordSaga";
 
-const review = new Review({ content: "A mock review" });
 const customer = customers[1];
+const review = new Review({
+  content: "A mock review",
+  customerId: customer.id,
+  date: "2019-06-12T23:19:50.639Z"
+});
 const initialState = { customers: { [customer.id]: customer } };
 
 const customerWithReview = new Customer({
@@ -21,11 +25,12 @@ const stateWithReview = {
 };
 const startAction = {
   type: "CUSTOMER_ADD_REVIEW_START",
-  customer: customerWithReview
+  review
 };
 const successAction = {
   type: "CUSTOMER_ADD_REVIEW_SUCCESS",
-  customer: customerWithReview
+  review
+  // customer: customerWithReview
 };
 
 describe("creating a review", () => {
@@ -37,7 +42,7 @@ describe("creating a review", () => {
 });
 
 describe("addReviewSaga", () => {
-  it("adds a review to a customer with a saga", async () => {
+  fit("adds a review to a customer with a saga", async () => {
     const dispatched = await recordSaga(addReviewSaga, startAction);
     expect(dispatched).toContainEqual(successAction);
   });

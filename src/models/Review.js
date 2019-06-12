@@ -16,7 +16,11 @@ export default class Review {
     this.customerId = obj.customerId;
     this.content = obj.content;
     this.rating = obj.rating;
-    this.date = obj.date ? new Sugar.Date(obj.date) : new Sugar.Date();
+    this.date = !obj.date
+      ? new Sugar.Date()
+      : obj.date.raw // should only happen if obj has already been created as a Review (I think?)
+      ? new Sugar.Date(obj.date.raw)
+      : new Sugar.Date(obj.date);
   }
 
   get timePast() {
@@ -37,5 +41,5 @@ export type ReviewObject = {
   customerId: number,
   content: string,
   rating: number,
-  date?: string
+  date?: string | { raw: string }
 };

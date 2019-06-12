@@ -1,5 +1,6 @@
 import { call, put, select, takeEvery, all } from "redux-saga/effects";
 import Customer from "../../models/Customer";
+import Review from "../../models/Review";
 
 export function searchCustomers({ text, customers, searchField }) {
   return {
@@ -30,12 +31,12 @@ export function* searchSaga({ searchParams }) {
   }
 }
 
-export function* addReviewSaga({ customer }) {
+export function* addReviewSaga({ review }) {
   try {
-    const customerWithReview = addReviewApi(customer);
+    const newReview = addReviewApi(review);
     yield put({
       type: "CUSTOMER_ADD_REVIEW_SUCCESS",
-      customer: customerWithReview
+      review: newReview
     });
   } catch (error) {
     yield put({
@@ -45,13 +46,14 @@ export function* addReviewSaga({ customer }) {
   }
 }
 
-export function addReviewApi(customer) {
+export function addReviewApi(review) {
   // Update the customer (with the new review) using online API
   // Or possibly create the review using online API
-  const result = customer;
+
+  const result = review;
   // The API should return the customer (or the review, which would be dealt with differently)
   // Convert API result to Customer object
-  return Customer.fromApi(result);
+  return Review.fromApi(result);
 }
 
 export function searchApi({ text, customers, searchField }) {

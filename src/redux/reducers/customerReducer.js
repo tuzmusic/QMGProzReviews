@@ -20,16 +20,22 @@ export default function customerReducer(
     case "CUSTOMER_SEARCH_SUCCESS":
       return { ...state, searchResults: action.results };
     case "CUSTOMER_ADD_REVIEW_SUCCESS":
-      const c = action.customer;
-      // console.log(c);
-
-      return { ...state, customers: { ...state.customers, [c.id]: c } };
+      const review = action.review;
+      const custId = review.customerId;
+      const oldCustomer = state.customers[custId];
+      const newReviews = [...oldCustomer.reviews, review];
+      const newCustomer = { ...oldCustomer, reviews: newReviews };
+      return {
+        ...state,
+        customers: { ...state.customers, [custId]: newCustomer }
+      };
     default:
       return state;
   }
 }
 
-type CustomerAction = CustomerSearchAction | CustomerReviewAction;
+export type CustomerAction = CustomerSearchAction | CustomerReviewAction;
+
 type CustomerSearchAction =
   | {
       type: "CUSTOMER_SEARCH_SUCCESS",
@@ -40,17 +46,22 @@ type CustomerSearchAction =
       searchParams: {
         text: string,
         searchField: string,
-        customers?: Customer[]
+        customers?: { [key: number]: Customer }
       }
     };
 
-type CustomerReviewAction = {
-  type: "CUSTOMER_ADD_REVIEW_SUCCESS",
-  customer: Customer
-};
+type CustomerReviewAction =
+  | {
+      type: "CUSTOMER_ADD_REVIEW_START",
+      review: Review
+    }
+  | {
+      type: "CUSTOMER_ADD_REVIEW_SUCCESS",
+      review: Review
+    };
 
 type CustomerState = {
-  customers: { [key: number]: Customer },
-  currentCustomer: Customer,
-  searchResults: ?(Customer[])
+  +customers: { [key: number]: Customer },
+  +currentCustomer: Customer,
+  +searchResults: ?(Customer[])
 };
