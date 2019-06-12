@@ -24,10 +24,6 @@ export class SearchCustomerScreen extends Component {
     this.props.navigation.navigate("Results", { results });
   }
 
-  clickCustomer(customer) {
-    this.props.navigation.navigate("Customer", { customer });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -36,7 +32,9 @@ export class SearchCustomerScreen extends Component {
         <Input
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}
+          clearButtonMode={"while-editing"}
           containerStyle={{ padding: 0 }}
+          placeholder={"Enter address"}
           value={this.state.text}
           onChangeText={text => this.setState({ text })}
         />
@@ -45,11 +43,6 @@ export class SearchCustomerScreen extends Component {
           type="outline"
           onPress={this.handleSearch.bind(this)}
         />
-        {/* {this.props.searchResults && (
-          <CustomerSearchResultScreen
-            onCustomerClick={this.clickCustomer.bind(this)}
-          />
-        )} */}
       </View>
     );
   }
@@ -74,14 +67,8 @@ const styles = {
   },
   input: {
     borderColor: "grey",
-    borderTopWidth: borderWidth,
-    borderBottomWidth: borderWidth,
-    borderRightWidth: borderWidth,
-    borderLeftWidth: borderWidth,
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
-    borderBottomRightRadius: borderRadius,
-    borderBottomLeftRadius: borderRadius,
+    borderWidth: borderWidth,
+    borderRadius: borderRadius,
     paddingHorizontal: 15,
     paddingVertical: 10
   },

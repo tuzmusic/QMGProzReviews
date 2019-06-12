@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "react-native-elements";
-import { connect } from "react-redux";
 import pluralize from "pluralize";
 
 export class CustomerSearchResultScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     const { results } = this.props;
 
@@ -23,33 +17,38 @@ export class CustomerSearchResultScreen extends Component {
       return (
         <View style={styles.container}>
           <Text>Found {pluralize("result", results.length, true)}:</Text>
-          {results.map(c => {
-            return (
-              <TouchableOpacity
-                key={c.id}
-                onPress={() => this.props.onCustomerClick(c)}
-              >
-                <Text>{c.fullName}</Text>
-              </TouchableOpacity>
-            );
-          })}
+          <View style={styles.resultsContainer}>
+            {results.map(c => {
+              return (
+                <View style={styles.resultContainer} key={c.id}>
+                  <TouchableOpacity
+                    onPress={this.props.onCustomerClick.bind(this, c)}
+                  >
+                    <Text style={styles.result}>{c.fullName}</Text>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
         </View>
       );
     }
   }
 }
 
-export default connect()(CustomerSearchResultScreen);
+export default CustomerSearchResultScreen;
 
 const styles = {
+  resultsContainer: { marginTop: 10 },
+  resultContainer: { padding: 10 },
+  result: { fontSize: 16, fontWeight: "bold" },
   container: {
-    // flex: 1,
-    justifyContent: "center",
+    flex: 1,
+    justifyContent: "flex-start",
     alignItems: "center",
     background: "grey",
-    borderColor: "blue",
-    borderWidth: 1,
-    height: 80,
+    // borderColor: "blue",
+    // borderWidth: 1,
     margin: 20,
     padding: 20
   }
