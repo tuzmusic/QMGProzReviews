@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CustomerScreen from "./CustomerScreen";
+import CustomerScreen from "../screens/CustomerScreen";
 
 class CustomerScreenContainer extends Component {
   render() {

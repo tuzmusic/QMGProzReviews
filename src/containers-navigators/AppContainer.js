@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, AppRegistry } from "react-native";
 import CustomerScreen from "../screens/CustomerScreen";
-import CustomerScreenContainer from "../screens/CustomerScreenContainer";
+import CustomerScreenContainer from "../containers-navigators/CustomerScreenContainer.js";
 import SearchCustomerScreen from "../screens/SearchCustomerScreen";
 import {
   createStackNavigator,

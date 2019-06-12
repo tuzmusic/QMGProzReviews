@@ -6,13 +6,15 @@ import { searchCustomers } from "../redux/actions/customerActions";
 import CustomerSearchResultScreen from "./CustomerSearchResultScreen";
 
 export class SearchCustomerScreen extends Component {
+  static navigationOptions = () => ({
+    headerTitle: "Search"
+  });
+
   state = {
     text: "55-57 59th St",
     searchField: "address"
   };
-  static navigationOptions = () => ({
-    headerTitle: "Search"
-  });
+
   handleSearch() {
     const result = this.props.searchCustomers({
       customers: this.props.customers,
