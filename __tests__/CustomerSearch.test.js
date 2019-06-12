@@ -15,7 +15,7 @@ const searchParams = { text, searchField, customers };
 const startAction = { type: "CUSTOMER_SEARCH_START", searchParams };
 const successAction = {
   type: "CUSTOMER_SEARCH_SUCCESS",
-  results: [customers[0]]
+  results: [customers[0], customers[2]]
 };
 
 describe("searchCustomers", () => {
