@@ -39,9 +39,7 @@ export class CustomerSearchResultScreen extends Component {
   }
 }
 
-export default connect(({ customers }) => ({
-  results: customers.searchResults
-}))(CustomerSearchResultScreen);
+export default connect()(CustomerSearchResultScreen);
 
 const styles = {
   container: {

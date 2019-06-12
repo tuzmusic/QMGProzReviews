@@ -16,11 +16,12 @@ export class SearchCustomerScreen extends Component {
   };
 
   async handleSearch() {
-    const results = await this.props.searchCustomers({
+    await this.props.searchCustomers({
       customers: this.props.customers,
       ...this.state
     });
-    this.props.navigation.navigate("Results"), { results };
+    const results = this.props.searchResults;
+    this.props.navigation.navigate("Results", { results });
   }
 
   clickCustomer(customer) {
