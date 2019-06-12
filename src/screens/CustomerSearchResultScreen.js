@@ -25,7 +25,10 @@ export class CustomerSearchResultScreen extends Component {
           <Text>Found {pluralize("result", results.length, true)}:</Text>
           {results.map(c => {
             return (
-              <TouchableOpacity key={c.id} onPress={() => console.log("click")}>
+              <TouchableOpacity
+                key={c.id}
+                onPress={() => this.props.onCustomerClick(c)}
+              >
                 <Text>{c.fullName}</Text>
               </TouchableOpacity>
             );

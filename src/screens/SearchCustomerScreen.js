@@ -10,12 +10,18 @@ export class SearchCustomerScreen extends Component {
     text: "55-57 59th St",
     searchField: "address"
   };
-
+  static navigationOptions = () => ({
+    headerTitle: "Search"
+  });
   handleSearch() {
     const result = this.props.searchCustomers({
       customers: this.props.customers,
       ...this.state
     });
+  }
+
+  clickCustomer(customer) {
+    this.props.navigation.navigate("Customer");
   }
 
   render() {
@@ -35,7 +41,11 @@ export class SearchCustomerScreen extends Component {
           type="outline"
           onPress={this.handleSearch.bind(this)}
         />
-        {this.props.searchResults && <CustomerSearchResultScreen />}
+        {this.props.searchResults && (
+          <CustomerSearchResultScreen
+            onCustomerClick={this.clickCustomer.bind(this)}
+          />
+        )}
       </View>
     );
   }

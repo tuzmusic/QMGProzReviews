@@ -8,15 +8,9 @@ import {
   createSwitchNavigator
 } from "react-navigation";
 
-class SearchNavigator extends Component {
-  render() {
-    return <Text>Hello</Text>;
-    // return <SearchStack navigation={this.props.navigation} />;
-  }
-}
-
 const AppNavigator = createStackNavigator({
-  Search: SearchNavigator
+  Search: { screen: SearchCustomerScreen, title: "Search" },
+  Customer: { screen: CustomerScreen }
 });
 
 export default AppContainer = createAppContainer(AppNavigator);
