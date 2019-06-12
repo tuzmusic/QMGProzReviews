@@ -8,6 +8,7 @@
 [X] Display for empty search
 [ ] Show search results as overlay
 [ ] Add review
+[ ] Activity indicators on search, and submit review
 [ ] Search by other stuff
 [ ] Login
 [ ] User
