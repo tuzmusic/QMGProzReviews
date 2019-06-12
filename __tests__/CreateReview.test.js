@@ -25,5 +25,11 @@ describe("creating a review", () => {
     it("takes a submit review succcess action and returns the state with the updated customer", () => {
       expect(reducer(initialState, successAction)).toEqual(stateWithReview);
     });
+
+    it("returns with a customer value that is a map", () => {
+      expect(
+        reducer(initialState, successAction).customers instanceof Map
+      ).toBe(true);
+    });
   });
 });
