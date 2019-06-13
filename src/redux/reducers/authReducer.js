@@ -8,12 +8,10 @@ export const initialState = {
   users: {}
 };
 
-export default (authReducer = (
+export default authReducer = (
   state = initialState,
   { user, users, error, ...action }
 ) => {
-  // console.log(action.type);
-
   switch (action.type) {
     case "LOGIN_START":
     case "LOGOUT_START":
@@ -39,4 +37,4 @@ export default (authReducer = (
     default:
       return state;
   }
-});
+};

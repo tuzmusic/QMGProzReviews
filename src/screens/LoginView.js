@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { Image, Overlay } from "react-native-elements";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { DotIndicator } from "react-native-indicators";
 import { connect } from "react-redux";
-import { login, register, clearAuthError } from "../redux/actions/authActions";
+import {
+  login,
+  register,
+  cancelLogin,
+  clearAuthError
+} from "../redux/actions/authActions";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import LoginForm from "../subviews/LoginForm";
 import RegisterForm from "../subviews/RegisterForm";
@@ -94,6 +99,8 @@ class LoginView extends Component {
   }
 
   render() {
+    console.log(this.state);
+
     return (
       <KeyboardAwareScrollView contentContainerStyle={styles.superContainer}>
         <View style={styles.container}>
@@ -109,6 +116,10 @@ class LoginView extends Component {
             <View style={styles.modalContainer}>
               <DotIndicator color={"darkgrey"} />
               <Text>Logging in...</Text>
+              <Text></Text>
+              <TouchableOpacity onPress={this.props.cancelLogin}>
+                <Text style={[styles.link]}>Cancel</Text>
+              </TouchableOpacity>
             </View>
           </Overlay>
           {/* <Image
@@ -150,13 +161,17 @@ export default connect(
     user: state.auth.user,
     error: state.auth.error
   }),
-  { login, register, clearAuthError }
+  { login, register, cancelLogin, clearAuthError }
 )(LoginView);
 
 const styles = {
   errorText: {
     color: "red",
     fontSize: 16
+  },
+  link: {
+    color: "blue",
+    textDecorationLine: "underline"
   },
   container: {
     flex: 1,
