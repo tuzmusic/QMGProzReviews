@@ -21,7 +21,7 @@ export class CustomerScreen extends Component {
     await setTimeout(this.startReview.bind(this), 10);
   }
   componentDidMount() {
-    this.automate();
+    // this.automate();
   }
 
   createReview({ content, rating }) {
@@ -37,8 +37,6 @@ export class CustomerScreen extends Component {
   }
 
   startReview() {
-    console.log("start review");
-
     this.setState({ isReviewing: true });
   }
   cancelReview() {
@@ -81,6 +79,15 @@ const CustomerInfo = ({ customer }) => {
       <Text style={styles.detailText}>{customer.address}</Text>
       <Text style={styles.detailText}>{customer.phone}</Text>
       <Text style={styles.detailText}>{customer.email}</Text>
+      <Text style={styles.detailText}>
+        Rating ({customer.reviews.length} reviews):
+      </Text>
+      <Rating
+        readonly
+        startingValue={customer.averageRating}
+        style={styles.rating}
+        imageSize={20}
+      />
     </View>
   );
 };
@@ -100,13 +107,6 @@ export const ReviewsList = ({ customer }) => {
   const { reviews, averageRating } = customer;
   return (
     <View style={{ width: "100%" }}>
-      <Text style={styles.detailText}>Rating ({reviews.length} reviews): </Text>
-      <Rating
-        readonly
-        startingValue={customer.averageRating}
-        style={styles.rating}
-        imageSize={20}
-      />
       <Text style={styles.detailText}>{/* blank line */} </Text>
       <Text h2>Reviews</Text>
       {reviews.map((review, i) => (
