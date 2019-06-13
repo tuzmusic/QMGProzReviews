@@ -6,11 +6,25 @@
 [X] Implement as Saga action? Probably not. Either way, go in TESTED steps from hard-code to function to mocked API call
 [X] Goes to results page, although there should only ever be one or zero results. Overlay or some kind of modular view?
 [X] Display for empty search
-[ ] Show search results as overlay
-[ ] Add review
+[X] Add review
 
-- I think the success action is updating the redux state, but I'm not sure the CustomerScreen is being updated with the updated state
-  [ ] Activity indicators on search, and submit review
-  [ ] Search by other stuff
-  [ ] Login
-  [ ] User
+## Functionality
+
+[ ] Login
+[ ] User
+[ ] Username in review
+[ ] Profile page
+[ ] Log out
+[ ] Store customers, reviews, etc
+[ ] Clear storage
+[ ] New customer
+
+## UX
+
+[ ] Search by other fields
+
+## UI
+
+[ ] Move "Leave a Review" button next to "Reviews"
+[ ] Activity indicators on search, and submit review
+[ ] Show search results as overlay

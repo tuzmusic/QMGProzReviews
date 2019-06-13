@@ -51,8 +51,10 @@ export class CustomerScreen extends Component {
           <CustomerInfo customer={customer} />
           {!this.state.isReviewing ? (
             <View style={{ width: "100%" }}>
-              <ReviewsList customer={customer} />
-              <ReviewButton onPress={this.startReview.bind(this)} />
+              <ReviewsList
+                customer={customer}
+                onStartReviewPress={this.startReview.bind(this)}
+              />
             </View>
           ) : (
             <NewReviewScreen
@@ -103,12 +105,21 @@ const ReviewButton = ({ onPress }) => {
   );
 };
 
-export const ReviewsList = ({ customer }) => {
+export const ReviewsList = ({ customer, onStartReviewPress }) => {
   const { reviews, averageRating } = customer;
   return (
     <View style={{ width: "100%" }}>
       <Text style={styles.detailText}>{/* blank line */} </Text>
-      <Text h2>Reviews</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
+      >
+        <Text h2>Reviews</Text>
+        <ReviewButton onPress={onStartReviewPress} />
+      </View>
       {reviews.map((review, i) => (
         <ReviewView review={review} key={i} />
       ))}
@@ -124,9 +135,9 @@ const styles = {
     alignItems: "flex-start"
   },
   buttonContainer: {
-    alignItems: "center",
-    paddingTop: 20,
-    width: "100%"
+    // alignItems: "center",
+    // paddingTop: 20,
+    // width: "100%"
   },
   divider: {
     backgroundColor: "black",
