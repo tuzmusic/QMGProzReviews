@@ -1,15 +1,36 @@
 // @flow
+import Sugar from "sugar";
+
+type UserObject = {
+  id: number,
+  firstName: string,
+  lastName: string,
+  dateCreated?: string | { raw: string },
+  username: string,
+  email: string
+};
 
 export default class User {
   id: number;
   firstName: string;
   lastName: string;
+  dateCreated: Sugar.Date;
+  username: string;
+  email: string;
 
   constructor(obj: UserObject) {
     this.id = obj.id;
     this.firstName = obj.firstName;
     this.lastName = obj.lastName;
+    this.email = obj.email;
+    this.username = obj.username;
+    this.dateCreated = !obj.dateCreated
+      ? new Sugar.Date()
+      : obj.dateCreated.raw // should only happen if obj has already been created as a Review (I think?)
+      ? new Sugar.Date(obj.dateCreated.raw)
+      : new Sugar.Date(obj.dateCreated);
   }
+
   get fullName() {
     return [this.firstName, this.lastName].join(" ");
   }
@@ -22,8 +43,3 @@ export default class User {
 }
 
 type OpenObject = { [key: string]: any };
-type UserObject = {
-  id: number,
-  firstName: string,
-  lastName: string
-};
