@@ -94,17 +94,6 @@ const CustomerInfo = ({ customer }) => {
   );
 };
 
-const ReviewButton = ({ onPress }) => {
-  return (
-    <Button
-      title="Leave a Review"
-      style={styles.button}
-      containerStyle={styles.buttonContainer}
-      onPress={onPress}
-    />
-  );
-};
-
 export const ReviewsList = ({ customer, onStartReviewPress }) => {
   const { reviews, averageRating } = customer;
   return (
@@ -118,7 +107,7 @@ export const ReviewsList = ({ customer, onStartReviewPress }) => {
         }}
       >
         <Text h2>Reviews</Text>
-        <ReviewButton onPress={onStartReviewPress} />
+        <Button title="Leave a Review" onPress={onStartReviewPress} />
       </View>
       {reviews.map((review, i) => (
         <ReviewView review={review} key={i} />
@@ -133,11 +122,6 @@ const styles = {
     marginBottom: 100,
     justifyContent: "flex-start",
     alignItems: "flex-start"
-  },
-  buttonContainer: {
-    // alignItems: "center",
-    // paddingTop: 20,
-    // width: "100%"
   },
   divider: {
     backgroundColor: "black",
