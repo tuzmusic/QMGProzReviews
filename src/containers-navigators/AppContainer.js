@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { View, Text, AppRegistry } from "react-native";
 import CustomerScreen from "../screens/CustomerScreen";
 import CustomerScreenContainer from "../containers-navigators/CustomerScreenContainer.js";
 import CustomerSearchResultScreenContainer from "../containers-navigators/CustomerSearchResultScreenContainer.js";
@@ -8,19 +7,28 @@ import SearchCustomerScreen from "../screens/SearchCustomerScreen";
 import {
   createStackNavigator,
   createAppContainer,
+  createDrawerNavigator,
   createSwitchNavigator
 } from "react-navigation";
 import AuthStack from "../containers-navigators/AuthNavigator";
+import DrawerContentView from "../screens/DrawerContentView";
 
 const MainStack = createStackNavigator({
-  Search: { screen: SearchCustomerScreen, title: "Search" },
-  Results: { screen: CustomerSearchResultScreenContainer },
-  Customer: { screen: CustomerScreenContainer }
+  Search: SearchCustomerScreen,
+  Results: CustomerSearchResultScreenContainer,
+  Customer: CustomerScreenContainer
 });
+const DrawerNavigator = createDrawerNavigator(
+  {
+    Main: MainStack
+  },
+  { contentComponent: DrawerContentView }
+);
 
 const SwitchNavigator = createSwitchNavigator({
   Auth: AuthStack,
-  Main: MainStack
+  Main: DrawerNavigator
+  // Main: MainStack
 });
 
 const AppNavigator = SwitchNavigator;

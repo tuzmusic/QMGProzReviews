@@ -10,11 +10,12 @@ export class SearchCustomerScreen extends Component {
   });
 
   automate() {
-    this.handleSearch();
+    // this.handleSearch();
+    this.props.navigation.toggleDrawer();
   }
 
   componentDidMount = () => {
-    // this.automate();
+    this.automate();
   };
 
   state = {
