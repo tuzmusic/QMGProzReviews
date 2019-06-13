@@ -1,6 +1,7 @@
 import axios from "axios";
 import { put, call, takeEvery, all } from "redux-saga/effects";
 import { ApiUrls } from "../../../constants";
+import User from "../../models/User";
 import Sugar from "sugar";
 Sugar.extend();
 
@@ -32,9 +33,17 @@ export async function logoutWithApi() {
 export function* loginSaga({ creds }) {
   try {
     const { error, ...user } = yield call(loginWithApi, creds);
-    yield put(
-      error ? { type: "LOGIN_FAILURE", error } : { type: "LOGIN_SUCCESS", user }
-    );
+
+    if (error) {
+      yield put({ type: "LOGIN_FAILURE", error });
+    } else {
+      const newUser = User.fromApi(user.user);
+      yield put({
+        type: "LOGIN_SUCCESS",
+        // user
+        user: { ...user, user: newUser }
+      });
+    }
   } catch (error) {
     // console.log("login error:", error.message);
     yield put({ type: "LOGIN_FAILURE", error: error.message });

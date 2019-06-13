@@ -1,6 +1,7 @@
+import User from "../../src/models/User";
 export const loginResponse = {
   logout: "User was logged out.",
-  success: {
+  apiResponse: {
     status: "ok",
     cookie:
       "testuser1|1560779545|rpqX0H4wlBHdQ1ww6Raon3VqRFRJBEBJjB9WC3Y631t|8a12ba20e3c71c13f1d5bac2b7eced8a13bdb999c1e364ef0f9565a6c3ca5932",
@@ -13,8 +14,8 @@ export const loginResponse = {
       url: "",
       registered: "2019-05-28 20:11:49",
       displayname: "testuser1",
-      firstname: "",
-      lastname: "",
+      firstname: "Arthur",
+      lastname: "Dent",
       nickname: "testuser1",
       description: "",
       capabilities: {
@@ -22,6 +23,38 @@ export const loginResponse = {
       },
       avatar: null
     }
+  },
+  success: {
+    status: "ok",
+    cookie:
+      "testuser1|1560779545|rpqX0H4wlBHdQ1ww6Raon3VqRFRJBEBJjB9WC3Y631t|8a12ba20e3c71c13f1d5bac2b7eced8a13bdb999c1e364ef0f9565a6c3ca5932",
+    cookie_name: "wordpress_logged_in_de35f4716c74f1f80e223057c4a2042e",
+    // this mock ideally should be a User where every property is explicitly set; not leaving to the fromApi implementation to be correct. or, whatever or something.
+    // user: User.fromApi({
+    //   id: 6,
+    //   username: "testuser1",
+    //   nicename: "testuser1",
+    //   email: "testuser@prozreviews.com",
+    //   url: "",
+    //   registered: "2019-05-28 20:11:49",
+    //   displayname: "testuser1",
+    //   firstname: "Arthur",
+    //   lastname: "Dent",
+    //   nickname: "testuser1",
+    //   description: "",
+    //   capabilities: {
+    //     subscriber: true
+    //   },
+    //   avatar: null
+    // }),
+    user: new User({
+      id: 6,
+      username: "testuser1",
+      email: "testuser@prozreviews.com",
+      firstName: "Arthur",
+      lastName: "Dent",
+      dateCreated: "2019-05-28 20:11:49"
+    })
   },
   failure: {
     status: "error",

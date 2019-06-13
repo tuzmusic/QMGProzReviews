@@ -22,7 +22,7 @@ import {
 import SagaTester from "redux-saga-tester";
 import authSaga from "../src/redux/actions/authActions";
 import { setupAuthMockAdapter } from "../__mocks__/auth/axiosMocks";
-
+import Sugar from "sugar";
 let mock = setupAuthMockAdapter();
 
 describe("API Calls", () => {
@@ -49,7 +49,7 @@ describe("API Calls", () => {
   describe("login api call", () => {
     it("calls the API and simply returns the response", async () => {
       let res = await loginWithApi(creds.success);
-      expect(res).toEqual(loginResponse.success);
+      expect(res).toEqual(loginResponse.apiResponse);
     });
 
     it("returns the response, without throwing an error, even for invalid credentials", async () => {
@@ -97,7 +97,7 @@ describe("Saga Actions", () => {
     it("should return an object containing a cookie and user info on a successful login", () => {
       gen = loginSaga(creds.success);
       gen.next(); // call api
-      expect(gen.next(loginResponse.success).value).toEqual(
+      expect(gen.next(loginResponse.apiResponse).value).toEqual(
         put({ type: "LOGIN_SUCCESS", user: loginResponse.success })
       );
     });

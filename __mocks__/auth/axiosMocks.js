@@ -48,14 +48,14 @@ export function setupAuthMockAdapter() {
         password: "123123"
       }
     })
-    .reply(200, loginResponse.success)
+    .reply(200, loginResponse.apiResponse)
     .onGet(ApiUrls.login, {
       params: {
         email: "testuser@prozreviews.com",
         password: "123123"
       }
     })
-    .reply(200, loginResponse.success)
+    .reply(200, loginResponse.apiResponse)
     .onGet(ApiUrls.login)
     .reply(200, loginResponse.failure)
     // logout

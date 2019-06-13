@@ -36,9 +36,15 @@ export default class User {
   }
 
   static fromApi(json: OpenObject) {
+    const userObject = {
+      ...json,
+      dateCreated: json.registered,
+      firstName: json.firstname,
+      lastName: json.lastname
+    };
     // reviews (and users) are probably represented in the api as links.
     // convert them here to objects? or not?
-    return new User(json);
+    return new User(userObject);
   }
 }
 

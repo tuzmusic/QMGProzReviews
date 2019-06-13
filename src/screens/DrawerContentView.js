@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { ScrollView, View, Text } from "react-native";
 import { SafeAreaView } from "react-navigation";
+import { connect } from "react-redux";
 
-export default class DrawerContentView extends Component {
+class DrawerContentView extends Component {
   render() {
     return (
       <ScrollView>
         <SafeAreaView style={styles.container}>
-          <Text> DrawerContentView </Text>
+          <Text> Logged in as {this.props.user.username} </Text>
         </SafeAreaView>
       </ScrollView>
     );
   }
 }
+
+export default connect(({ auth }) => ({ user: auth.user }))(DrawerContentView);
 
 const styles = {
   container: {
