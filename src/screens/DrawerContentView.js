@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 class DrawerContentView extends Component {
   render() {
+    // debugger;
     return (
       <ScrollView>
         <SafeAreaView style={styles.container}>
@@ -15,7 +16,9 @@ class DrawerContentView extends Component {
   }
 }
 
-export default connect(({ auth }) => ({ user: auth.user }))(DrawerContentView);
+export default connect(({ auth }) => ({ user: auth.user.user }))(
+  DrawerContentView
+);
 
 const styles = {
   container: {
