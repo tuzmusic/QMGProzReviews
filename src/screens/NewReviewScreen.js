@@ -4,8 +4,7 @@ import { View, StyleSheet } from "react-native";
 
 export default class NewReviewScreen extends Component {
   state = {
-    content:
-      "If true, the content input can be multiple lines. The default value is false. It is important to note that this aligns the content to the top on iOS, and centers it on Android. Use with textAlignVertical set to top for the same behavior in both platforms.",
+    content: "Here's another review.",
     // content: "",
     rating: 4
   };

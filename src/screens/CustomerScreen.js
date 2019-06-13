@@ -9,24 +9,22 @@ import {
   Button
 } from "react-native-elements";
 import Customer from "../models/Customer";
-import Review from "../subviews/ReviewView";
+import Review from "../models/Review";
+import ReviewView from "../subviews/ReviewView";
 import NewReviewScreen from "./NewReviewScreen";
+import { addNewReview } from "../redux/actions/customerActions";
 
 export class CustomerScreen extends Component {
   state = { isReviewing: false };
 
-  automate() {
-    this.cancelReview();
+  async automate() {
+    await setTimeout(this.startReview.bind(this), 10);
   }
-  componentDidMount = () => {
+  componentDidMount() {
     this.automate();
-  };
+  }
 
   createReview({ content, rating }) {
-    console.warn(
-      "Waiting to finish implementing add review UI until I pass review to action instead of customer"
-    );
-    return;
     const review = new Review({
       id: Math.floor(1000 + Math.random() * 9000),
       user: { firstName: "Sample", lastName: "User" },
@@ -34,38 +32,41 @@ export class CustomerScreen extends Component {
       content,
       rating
     });
+    this.props.addNewReview(review);
   }
 
+  startReview() {
+    this.setState({ isReviewing: true });
+  }
   cancelReview() {
     this.setState({ isReviewing: false });
   }
 
   render() {
-    const { customer } = this.props;
+    const customer = this.props.allCustomers[this.props.customer.id];
     return (
       <ThemeProvider theme={theme}>
         <ScrollView contentContainerStyle={styles.scrollView}>
           <CustomerInfo customer={customer} />
-          {!this.state.isReviewing ? (
-            <View style={{ width: "100%" }}>
-              <ReviewsList customer={customer} />
-              <ReviewButton
-                onPress={() => this.setState({ isReviewing: true })}
-              />
-            </View>
-          ) : (
-            <NewReviewScreen
-              onCancel={this.cancelReview.bind(this)}
-              onSubmit={this.createReview.bind(this)}
-            />
-          )}
+          <View style={{ width: "100%" }}>
+            <ReviewsList customer={customer} />
+            <ReviewButton onPress={this.startReview.bind(this)} />
+          </View>
+          <NewReviewScreen
+            onCancel={this.cancelReview.bind(this)}
+            onSubmit={this.createReview.bind(this)}
+          />
+          <Divider style={{ height: 100 }} />
         </ScrollView>
       </ThemeProvider>
     );
   }
 }
 
-export default connect()(CustomerScreen);
+export default connect(
+  ({ customers }) => ({ allCustomers: customers.customers }),
+  { addNewReview }
+)(CustomerScreen);
 
 const CustomerInfo = ({ customer }) => {
   return (
@@ -103,7 +104,7 @@ export const ReviewsList = ({ customer }) => {
       <Text style={styles.detailText}>{/* blank line */} </Text>
       <Text h2>Reviews</Text>
       {reviews.map((review, i) => (
-        <Review review={review} key={i} />
+        <ReviewView review={review} key={i} />
       ))}
     </View>
   );

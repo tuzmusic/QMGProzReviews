@@ -8,7 +8,9 @@
 [X] Display for empty search
 [ ] Show search results as overlay
 [ ] Add review
-[ ] Activity indicators on search, and submit review
-[ ] Search by other stuff
-[ ] Login
-[ ] User
+
+- I think the success action is updating the redux state, but I'm not sure the CustomerScreen is being updated with the updated state
+  [ ] Activity indicators on search, and submit review
+  [ ] Search by other stuff
+  [ ] Login
+  [ ] User

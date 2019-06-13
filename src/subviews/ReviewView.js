@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { Rating } from "react-native-elements";
 import User from "../models/User";
 
-export default Review = ({ review }) => {
+export default ReviewView = ({ review }) => {
   const user = new User(review.user);
   return (
     <View style={styles.reviewContainer}>
