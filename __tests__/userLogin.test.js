@@ -267,7 +267,7 @@ describe("integration", () => {
       ]);
     });
 
-    it("handles logout errors", async () => {
+    xit("handles logout errors", async () => {
       mock.resetHandlers();
       mock.onGet(ApiUrls.logout).networkErrorOnce();
       sagaStore.dispatch(logout());
