@@ -12,6 +12,7 @@ export default authReducer = (
   state = initialState,
   { user, users, error, ...action }
 ) => {
+  // if (action.type[0] !== "@") console.log("AuthReducer:", action.type);
   switch (action.type) {
     case "LOGIN_START":
     case "LOGOUT_START":

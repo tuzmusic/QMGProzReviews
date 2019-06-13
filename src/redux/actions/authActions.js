@@ -73,20 +73,15 @@ export function* registerSaga({ info }) {
   }
 }
 
-function* watchLogin() {
-  yield takeEvery("LOGIN_START", loginSaga);
-}
-function* watchLogout() {
-  yield takeEvery("LOGOUT_START", logoutSaga);
-}
-function* watchRegister() {
-  yield takeEvery("REGISTRATION_START", registerSaga);
-}
-
 export default function* authSaga() {
-  yield all([watchLogin(), watchLogout(), watchRegister()]);
+  yield all([
+    yield takeEvery("LOGIN_START", loginSaga),
+    yield takeEvery("LOGOUT_START", logoutSaga),
+    yield takeEvery("REGISTRATION_START", registerSaga)
+  ]);
 }
 
+// ACTION CREATORS
 export function clearAuthError() {
   return { type: "CLEAR_AUTH_ERROR" };
 }

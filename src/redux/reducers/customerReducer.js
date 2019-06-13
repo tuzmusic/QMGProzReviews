@@ -15,7 +15,7 @@ export default function customerReducer(
   state: CustomerState = initialState,
   action: CustomerAction
 ) {
-  // if (action.type[0] !== "@") console.log(action);
+  // if (action.type[0] !== "@") console.log("CustomerReducer:", action.type);
 
   switch (action.type) {
     case "CUSTOMER_SEARCH_SUCCESS":

@@ -20,7 +20,8 @@ const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
 function* rootSaga() {
   yield all([customerSaga, authSaga]);
 }
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(authSaga);
+sagaMiddleware.run(customerSaga);
 setupAuthMockAdapter();
 export default function App() {
   return (

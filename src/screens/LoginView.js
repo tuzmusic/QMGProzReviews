@@ -30,7 +30,7 @@ class LoginView extends Component {
         this.handleLogin({ username: "testuser1", password: "123123" });
       }, 500);
     };
-    // autoLogin();
+    autoLogin();
   }
 
   async handleLogin({ username, password }) {
@@ -99,8 +99,6 @@ class LoginView extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     return (
       <KeyboardAwareScrollView contentContainerStyle={styles.superContainer}>
         <View style={styles.container}>
