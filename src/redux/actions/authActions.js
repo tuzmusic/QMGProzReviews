@@ -30,8 +30,6 @@ export async function logoutWithApi() {
 }
 
 export function* loginSaga({ creds }) {
-  console.log("loginsaga");
-
   try {
     const { error, ...user } = yield call(loginWithApi, creds);
     yield put(

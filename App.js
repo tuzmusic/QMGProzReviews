@@ -17,18 +17,21 @@ const combinedReducer = combineReducers({
 });
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
-function* rootSaga() {
-  yield all([customerSaga, authSaga]);
-}
-sagaMiddleware.run(authSaga);
-sagaMiddleware.run(customerSaga);
+sagaMiddleware.run(rootSaga);
+
 setupAuthMockAdapter();
+
 export default function App() {
   return (
     <Provider store={store}>
       <AppContainer />
     </Provider>
   );
+}
+
+function* rootSaga() {
+  sagaMiddleware.run(authSaga);
+  sagaMiddleware.run(customerSaga);
 }
 
 const styles = StyleSheet.create({

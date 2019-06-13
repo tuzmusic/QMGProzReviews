@@ -114,10 +114,10 @@ class LoginView extends Component {
             <View style={styles.modalContainer}>
               <DotIndicator color={"darkgrey"} />
               <Text>Logging in...</Text>
-              <Text></Text>
+              {/* <Text></Text>
               <TouchableOpacity onPress={this.props.cancelLogin}>
                 <Text style={[styles.link]}>Cancel</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </Overlay>
           {/* <Image
