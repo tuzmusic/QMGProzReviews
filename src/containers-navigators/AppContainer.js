@@ -10,11 +10,20 @@ import {
   createAppContainer,
   createSwitchNavigator
 } from "react-navigation";
+import AuthStack from "../containers-navigators/AuthNavigator";
 
-const AppNavigator = createStackNavigator({
+const MainStack = createStackNavigator({
   Search: { screen: SearchCustomerScreen, title: "Search" },
   Results: { screen: CustomerSearchResultScreenContainer },
   Customer: { screen: CustomerScreenContainer }
 });
+
+const SwitchNavigator = createSwitchNavigator({
+  Auth: AuthStack,
+  Main: MainStack
+});
+
+const AppNavigator = SwitchNavigator;
+// const AppNavigator = MainStack;
 
 export default AppContainer = createAppContainer(AppNavigator);

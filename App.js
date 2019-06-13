@@ -5,12 +5,17 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import customerSaga from "./src/redux/actions/customerActions";
+import authSaga from "./src/redux/actions/authActions";
 import customerReducer from "./src/redux/reducers/customerReducer";
+import authReducer from "./src/redux/reducers/authReducer";
 
-const combinedReducer = combineReducers({ customers: customerReducer });
+const combinedReducer = combineReducers({
+  customers: customerReducer,
+  auth: authReducer
+});
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(customerSaga);
+sagaMiddleware.run(customerSaga, authSaga);
 
 export default function App() {
   return (

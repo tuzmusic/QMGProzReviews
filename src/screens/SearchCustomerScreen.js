@@ -14,7 +14,7 @@ export class SearchCustomerScreen extends Component {
   }
 
   componentDidMount = () => {
-    this.automate();
+    // this.automate();
   };
 
   state = {
