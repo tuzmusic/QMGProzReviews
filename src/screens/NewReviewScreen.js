@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Text, Input, Button, AirbnbRating } from "react-native-elements";
+import {
+  Text,
+  Input,
+  Button,
+  AirbnbRating,
+  Divider
+} from "react-native-elements";
 import { View, StyleSheet } from "react-native";
 
 export default class NewReviewScreen extends Component {

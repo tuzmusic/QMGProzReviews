@@ -33,9 +33,12 @@ export class CustomerScreen extends Component {
       rating
     });
     this.props.addNewReview(review);
+    this.setState({ isReviewing: false });
   }
 
   startReview() {
+    console.log("start review");
+
     this.setState({ isReviewing: true });
   }
   cancelReview() {
@@ -48,14 +51,17 @@ export class CustomerScreen extends Component {
       <ThemeProvider theme={theme}>
         <ScrollView contentContainerStyle={styles.scrollView}>
           <CustomerInfo customer={customer} />
-          <View style={{ width: "100%" }}>
-            <ReviewsList customer={customer} />
-            <ReviewButton onPress={this.startReview.bind(this)} />
-          </View>
-          <NewReviewScreen
-            onCancel={this.cancelReview.bind(this)}
-            onSubmit={this.createReview.bind(this)}
-          />
+          {!this.state.isReviewing ? (
+            <View style={{ width: "100%" }}>
+              <ReviewsList customer={customer} />
+              <ReviewButton onPress={this.startReview.bind(this)} />
+            </View>
+          ) : (
+            <NewReviewScreen
+              onCancel={this.cancelReview.bind(this)}
+              onSubmit={this.createReview.bind(this)}
+            />
+          )}
           <Divider style={{ height: 100 }} />
         </ScrollView>
       </ThemeProvider>
