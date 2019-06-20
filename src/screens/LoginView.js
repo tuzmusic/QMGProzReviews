@@ -120,10 +120,10 @@ class LoginView extends Component {
               </TouchableOpacity> */}
             </View>
           </Overlay>
-          {/* <Image
-            source={require("../../assets/logos/ElectroLogo.png")}
+          <Image
+            source={require("../../assets/images/proz-reviews-logo.png")}
             style={styles.image}
-          /> */}
+          />
           {this.state.errors.map((e, i) => (
             <Text style={styles.errorText} key={i}>
               {e}
@@ -163,6 +163,12 @@ export default connect(
 )(LoginView);
 
 const styles = {
+  image: {
+    height: 200,
+    width: 200,
+    marginBottom: 40
+  },
+
   errorText: {
     color: "red",
     fontSize: 16
