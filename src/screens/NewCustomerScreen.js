@@ -21,25 +21,17 @@ export default class NewCustomerScreen extends Component {
     }
   };
 
-  createReview({ content, rating }) {
-    const review = new Review({
-      id: Math.floor(1000 + Math.random() * 9000),
-      user: { firstName: "Sample", lastName: "User" },
-      customerId: this.props.customer.id,
-      content,
-      rating
-    });
-    this.props.addNewReview(review);
-    this.setState({ showReview: false });
-  }
-
-  cancelReview() {
-    this.setState({ showReview: false });
-  }
-
   Input = ({ propName }) => (
     <ControlledInput binder={this} propName={propName} />
   );
+
+  toggleReviewing() {
+    this.setState({ showReview: !this.state.showReview });
+  }
+
+  saveCustomer() {
+    console.log("saving");
+  }
 
   render() {
     return (
@@ -51,43 +43,36 @@ export default class NewCustomerScreen extends Component {
           <this.Input propName={"address"} />
           <this.Input propName={"phone"} />
           <this.Input propName={"email"} />
-          <Button
-            containerStyle={styles.buttonContainer}
-            title={!this.state.showReview ? "Add a review" : "Cancel review"}
-            onPress={() =>
-              this.setState({ showReview: !this.state.showReview })
-            }
-          />
           {this.state.showReview && (
             <NewReviewScreen showButtons={false} parent={this} />
           )}
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-around" }}
+          >
+            <Button
+              type="outline"
+              buttonStyle={styles.button}
+              title={!this.state.showReview ? "Add a review" : "Cancel review"}
+              onPress={this.toggleReviewing.bind(this)}
+            />
+            <Button
+              buttonStyle={styles.button}
+              title={"Save New Customer"}
+              onPress={this.saveCustomer.bind(this)}
+            />
+          </View>
         </KeyboardAwareScrollView>
       </SafeAreaView>
     );
   }
 }
 
-const text = {
-  title: {
-    fontWeight: "bold",
-    fontSize: 18,
-    textAlign: "center"
-  },
-  body: {
-    fontSize: 15,
-    textAlign: "center"
-  },
-  note: { textAlign: "center", fontStyle: "italic" },
-  unformatted: {
-    fontFamily: null
-  }
-};
-
 const styles = {
   rootContainer: { margin: 20, paddingBottom: 40 },
-  buttonContainer: {
-    marginVertical: 20,
-    marginHorizontal: 40
+  button: {
+    marginVertical: 30,
+    marginHorizontal: 40,
+    borderWidth: 1.5
   },
   inputContainer: {
     padding: 5

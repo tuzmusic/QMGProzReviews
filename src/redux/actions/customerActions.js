@@ -1,22 +1,23 @@
+// @flow
+import type {
+  CustomerState,
+  CustomerAction,
+  CustomerSearchParams
+} from "../reducers/customerReducer";
 import { call, put, select, takeEvery, all } from "redux-saga/effects";
 import Customer from "../../models/Customer";
+import type CustomerType from "../../models/Customer";
 import Review from "../../models/Review";
+import type ReviewType from "../../models/Review";
 
-export function searchCustomers({ text, customers, searchField }) {
-  return {
-    type: "CUSTOMER_SEARCH_START",
-    searchParams: { text, customers, searchField }
-  };
-}
+import type { Saga } from "redux-saga";
 
-export function addNewReview(review) {
-  return {
-    type: "CUSTOMER_ADD_REVIEW_START",
-    review
-  };
-}
+type SearchArgs = {
+  searchParams: CustomerSearchParams
+};
+type AddReviewArgs = { review: ReviewType };
 
-export function* searchSaga({ searchParams }) {
+export function* searchSaga({ searchParams }: SearchArgs): Saga<void> {
   try {
     const results = searchApi(searchParams);
     yield put({
@@ -31,7 +32,7 @@ export function* searchSaga({ searchParams }) {
   }
 }
 
-export function* addReviewSaga({ review }) {
+export function* addReviewSaga({ review }: AddReviewArgs): Saga<void> {
   try {
     const newReview = addReviewApi(review);
     yield put({
@@ -46,7 +47,7 @@ export function* addReviewSaga({ review }) {
   }
 }
 
-export function addReviewApi(review) {
+export function addReviewApi(review: Review) {
   // Update the customer (with the new review) using online API
   // Or possibly create the review using online API
 
@@ -56,14 +57,22 @@ export function addReviewApi(review) {
   return Review.fromApi(result);
 }
 
-export function searchApi({ text, customers, searchField }) {
+// import type { OpenObject } from "../../models/Customer";
+type OpenObject = { [key: string]: mixed };
+export function searchApi({
+  text,
+  customers,
+  searchField
+}: CustomerSearchParams): OpenObject[] {
   // Perform search using online API
-  const results = Object.values(customers).filter(c => c[searchField] === text);
+  const results = Object.values(customers).filter(
+    (c: Object) => c[searchField] === text
+  );
   // Convert API results to Customer objects
   return results.map(c => Customer.fromApi(c));
 }
 
-export default function* customerSaga() {
+export default function* customerSaga(): Saga<void> {
   yield all([
     yield takeEvery("CUSTOMER_SEARCH_START", searchSaga),
     yield takeEvery("CUSTOMER_ADD_REVIEW_START", addReviewSaga)

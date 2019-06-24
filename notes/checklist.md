@@ -10,12 +10,12 @@
 
 ## Functionality
 
-[ ] Login
+[X] Login
 [ ] User
 [ ] Username in review
 [ ] Profile page
-[ ] Log out
-[ ] Store customers, reviews, etc
+[X] Log out
+[ ] Store customers, reviews, etc (AsyncStorage)
 [ ] Clear storage
 [ ] New customer
 
@@ -28,3 +28,10 @@
 [ ] Move "Leave a Review" button next to "Reviews"
 [ ] Activity indicators on search, and submit review
 [ ] Show search results as overlay
+
+## Corrections
+
+[ ] Fix start actions
+
+- They currently take Customer/Review (etc) objects, but when working with the actual API, the start actions will need to have API-friendly payloads (or at least toApi(json)-friendly payloads). The success actions will indeed return class Objects.
+  - Actually, it may be okay since the saga actions can run these through the toApi function and come out with an API-friendly payload

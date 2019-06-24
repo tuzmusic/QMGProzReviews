@@ -28,14 +28,19 @@ export default class Customer {
     return Sugar.Array.average(ratings);
   }
 
-  static fromApi(json: OpenObject) {
+  static fromApi(json: Object) {
     // reviews (and users) are probably represented in the api as links.
     // convert them here to objects? or not?
     return new Customer(json);
   }
+
+  static toApi(customer: Customer): CustomerApiPayload {
+    return { ...customer };
+  }
 }
 
-type OpenObject = { [key: string]: any };
+type CustomerApiPayload = { [key: string]: any }; // TBD!
+export type OpenObject = { [key: string]: any };
 type CustomerObject = {
   id: number,
   firstName: string,

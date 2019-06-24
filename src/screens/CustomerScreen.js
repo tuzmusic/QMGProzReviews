@@ -12,7 +12,7 @@ import Customer from "../models/Customer";
 import Review from "../models/Review";
 import ReviewView from "../subviews/ReviewView";
 import NewReviewScreen from "./NewReviewScreen";
-import { addNewReview } from "../redux/actions/customerActions";
+import { addNewReview } from "../redux/action-creators/customerActionCreators";
 
 export class CustomerScreen extends Component {
   state = { isReviewing: false };

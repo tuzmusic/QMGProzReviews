@@ -18,6 +18,11 @@ export default function customerReducer(
   // if (action.type[0] !== "@") console.log("CustomerReducer:", action.type);
 
   switch (action.type) {
+    case "NEW_CUSTOMER_SUCCESS":
+      return {
+        ...state,
+        customers: { ...state.customers, [action.customer.id]: action.customer }
+      };
     case "CUSTOMER_SEARCH_SUCCESS":
       return { ...state, searchResults: action.results };
     case "CUSTOMER_ADD_REVIEW_SUCCESS":
@@ -35,7 +40,32 @@ export default function customerReducer(
   }
 }
 
-export type CustomerAction = CustomerSearchAction | CustomerReviewAction;
+export type CustomerState = {
+  +customers: { [key: number]: CustomerType },
+  +currentCustomer: ?CustomerType,
+  +searchResults: ?(CustomerType[])
+};
+
+export type CustomerAction =
+  | CustomerSearchAction
+  | CustomerReviewAction
+  | CustomerNewAction;
+
+export type CustomerSearchParams = {
+  text: string,
+  searchField: string,
+  customers?: { [key: number]: CustomerType }
+};
+
+type CustomerNewAction =
+  | {
+      type: "NEW_CUSTOMER_START",
+      customer: CustomerType
+    }
+  | {
+      type: "NEW_CUSTOMER_SUCCESS",
+      customer: CustomerType
+    };
 
 type CustomerSearchAction =
   | {
@@ -44,11 +74,7 @@ type CustomerSearchAction =
     }
   | {
       type: "CUSTOMER_SEARCH_START",
-      searchParams: {
-        text: string,
-        searchField: string,
-        customers?: { [key: number]: CustomerType }
-      }
+      searchParams: CustomerSearchParams
     };
 
 type CustomerReviewAction =
@@ -60,9 +86,3 @@ type CustomerReviewAction =
       type: "CUSTOMER_ADD_REVIEW_SUCCESS",
       review: Review
     };
-
-type CustomerState = {
-  +customers: { [key: number]: CustomerType },
-  +currentCustomer: CustomerType,
-  +searchResults: ?(CustomerType[])
-};

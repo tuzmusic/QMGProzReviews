@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { Text, Input, Button, Overlay } from "react-native-elements";
 import { connect } from "react-redux";
-import { searchCustomers } from "../redux/actions/customerActions";
+import { searchCustomers } from "../redux/action-creators/customerActionCreators";
 
 export class SearchCustomerScreen extends Component {
   static navigationOptions = () => ({

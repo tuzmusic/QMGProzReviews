@@ -1,10 +1,10 @@
 import reducer from "../src/redux/reducers/customerReducer";
 import Customer from "../src/models/Customer";
 import customerSaga, {
-  searchCustomers,
   searchSaga,
   searchApi
 } from "../src/redux/actions/customerActions";
+import { searchCustomers } from "../src/redux/action-creators/customerActionCreators";
 import customers from "../__mocks__/customers";
 import SagaTester from "redux-saga-tester";
 import recordSaga from "../recordSaga";
