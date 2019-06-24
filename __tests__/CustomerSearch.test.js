@@ -32,9 +32,9 @@ describe("searchSaga", () => {
 
   it("returns an error on a failure", async () => {
     const error = new Error("uh oh!");
-    const spy = jest
-      .spyOn(Array.prototype, "filter")
-      .mockImplementation(() => throw error);
+    const spy = jest.spyOn(Array.prototype, "filter").mockImplementation(() => {
+      throw error;
+    });
     const expectedAction = { type: "CUSTOMER_SEARCH_FAILURE", error };
     try {
       const dispatched = await recordSaga(searchSaga, initialAction);

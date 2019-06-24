@@ -31,7 +31,5 @@
 
 ## Corrections
 
-[ ] Fix start actions
-
-- They currently take Customer/Review (etc) objects, but when working with the actual API, the start actions will need to have API-friendly payloads (or at least toApi(json)-friendly payloads). The success actions will indeed return class Objects.
-  - Actually, it may be okay since the saga actions can run these through the toApi function and come out with an API-friendly payload
+[ ] Add/manage toApi methods for all models
+[ ] Add failure handling to saga actions (read API response for failure, not just thrown errors)

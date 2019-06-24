@@ -29,18 +29,17 @@ export default class Customer {
   }
 
   static fromApi(json: Object) {
-    // reviews (and users) are probably represented in the api as links.
-    // convert them here to objects? or not?
+    // TO-DO: Convert API properties to constructor properties
     return new Customer(json);
   }
 
   static toApi(customer: Customer): CustomerApiPayload {
+    // TO-DO: Convert constructor properties to API properties
     return { ...customer };
   }
 }
 
 type CustomerApiPayload = { [key: string]: any }; // TBD!
-export type OpenObject = { [key: string]: any };
 type CustomerObject = {
   id: number,
   firstName: string,

@@ -1,8 +1,7 @@
 // @flow
 
 import Customer from "../../models/Customer";
-import type CustomerType from "../../models/Customer";
-import type Review from "../../models/Review";
+import Review from "../../models/Review";
 import customers from "../../../__mocks__/customers";
 
 const initialState = {
@@ -41,9 +40,9 @@ export default function customerReducer(
 }
 
 export type CustomerState = {
-  +customers: { [key: number]: CustomerType },
-  +currentCustomer: ?CustomerType,
-  +searchResults: ?(CustomerType[])
+  +customers: { [key: number]: Customer },
+  +currentCustomer: ?Customer,
+  +searchResults: ?(Customer[])
 };
 
 export type CustomerAction =
@@ -54,27 +53,27 @@ export type CustomerAction =
 export type CustomerSearchParams = {
   text: string,
   searchField: string,
-  customers?: { [key: number]: CustomerType }
+  customers?: { [key: number]: Customer }
 };
 
 type CustomerNewAction =
   | {
       type: "NEW_CUSTOMER_START",
-      customer: CustomerType
+      customer: Customer
     }
   | {
       type: "NEW_CUSTOMER_SUCCESS",
-      customer: CustomerType
+      customer: Customer
     };
 
 type CustomerSearchAction =
   | {
-      type: "CUSTOMER_SEARCH_SUCCESS",
-      results: CustomerType[]
-    }
-  | {
       type: "CUSTOMER_SEARCH_START",
       searchParams: CustomerSearchParams
+    }
+  | {
+      type: "CUSTOMER_SEARCH_SUCCESS",
+      results: Customer[]
     };
 
 type CustomerReviewAction =
