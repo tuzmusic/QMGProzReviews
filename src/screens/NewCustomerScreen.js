@@ -2,19 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { View } from "react-native";
-import {
-  ThemeProvider,
-  Text,
-  Divider,
-  Button,
-  Input
-} from "react-native-elements";
+import { ThemeProvider, Text, Divider, Button } from "react-native-elements";
 import NewReviewScreen from "./NewReviewScreen";
 import { SafeAreaView } from "react-navigation";
 import ControlledInput from "../subviews/ControlledInput";
 
 export default class NewCustomerScreen extends Component {
-  state = { showReview: false };
+  state = { showReview: true };
 
   createReview({ content, rating }) {
     const review = new Review({
@@ -32,35 +26,28 @@ export default class NewCustomerScreen extends Component {
     this.setState({ showReview: false });
   }
 
+  Input = ({ propName }) => (
+    <ControlledInput binder={this} propName={propName} />
+  );
+
   render() {
     return (
       <SafeAreaView>
         <KeyboardAwareScrollView contentContainerStyle={styles.rootContainer}>
           <Text h2>New Customer</Text>
-          <ControlledInput binder={this} propName={"firstName"} />
-          <ControlledInput binder={this} propName={"lastName"} />
-          <ControlledInput binder={this} propName={"address"} />
-          <ControlledInput binder={this} propName={"phone"} />
-          <ControlledInput binder={this} propName={"email"} />
+          <this.Input propName={"firstName"} />
+          <this.Input propName={"lastName"} />
+          <this.Input propName={"address"} />
+          <this.Input propName={"phone"} />
+          <this.Input propName={"email"} />
           <Button
-            style={styles.buttonContainer}
+            containerStyle={styles.buttonContainer}
             title={!this.state.showReview ? "Add a review" : "Cancel review"}
             onPress={() =>
               this.setState({ showReview: !this.state.showReview })
             }
           />
-          {/* <ControlledInput
-      binder={this}
-      propName={"reviewContent"}
-      placeholder={"Enter a review"}
-      multiline={true}
-      /> */}
-          {this.state.showReview && (
-            <NewReviewScreen
-              onCancel={this.cancelReview.bind(this)}
-              onSubmit={this.createReview.bind(this)}
-            />
-          )}
+          {this.state.showReview && <NewReviewScreen showButtons={false} />}
         </KeyboardAwareScrollView>
       </SafeAreaView>
     );
@@ -84,18 +71,10 @@ const text = {
 };
 
 const styles = {
-  rootContainer: { margin: 10 },
-  rowElement: {
-    width: 150
-  },
-  rowContainer: {
-    flex: 1,
-    justifyContent: "space-between",
-    flexDirection: "row"
-  },
-  button: {
-    padding: 15,
-    paddingBottom: 0
+  rootContainer: { margin: 20, paddingBottom: 40 },
+  buttonContainer: {
+    marginVertical: 20,
+    marginHorizontal: 40
   },
   inputContainer: {
     padding: 5

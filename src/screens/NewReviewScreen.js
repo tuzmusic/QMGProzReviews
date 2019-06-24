@@ -14,6 +14,10 @@ export default class NewReviewScreen extends Component {
     // content: "",
     rating: 4
   };
+
+  static defaultProps = {
+    showButtons: true
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -39,13 +43,19 @@ export default class NewReviewScreen extends Component {
           numberOfLines={100}
           labelStyle={styles.ratingLabel}
         />
-        <View style={styles.buttonsContainer}>
-          <Button
-            title="Submit"
-            onPress={() => this.props.onSubmit(this.state)}
-          />
-          <Button title="Cancel" type="outline" onPress={this.props.onCancel} />
-        </View>
+        {this.props.showButtons && (
+          <View style={styles.buttonsContainer}>
+            <Button
+              title="Submit"
+              onPress={() => this.props.onSubmit(this.state)}
+            />
+            <Button
+              title="Cancel"
+              type="outline"
+              onPress={this.props.onCancel}
+            />
+          </View>
+        )}
       </View>
     );
   }
