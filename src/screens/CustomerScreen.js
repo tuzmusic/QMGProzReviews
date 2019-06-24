@@ -25,7 +25,6 @@ export class CustomerScreen extends Component {
   }
 
   createReview({ content, rating }) {
-    return console.warn("returning from createReview");
     const review = new Review({
       id: Math.floor(1000 + Math.random() * 9000),
       user: { firstName: "Sample", lastName: "User" },

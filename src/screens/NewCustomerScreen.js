@@ -8,7 +8,18 @@ import { SafeAreaView } from "react-navigation";
 import ControlledInput from "../subviews/ControlledInput";
 
 export default class NewCustomerScreen extends Component {
-  state = { showReview: true };
+  state = {
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+    email: "",
+    showReview: true,
+    review: {
+      content: "",
+      rating: 4
+    }
+  };
 
   createReview({ content, rating }) {
     const review = new Review({
@@ -47,7 +58,9 @@ export default class NewCustomerScreen extends Component {
               this.setState({ showReview: !this.state.showReview })
             }
           />
-          {this.state.showReview && <NewReviewScreen showButtons={false} />}
+          {this.state.showReview && (
+            <NewReviewScreen showButtons={false} parent={this} />
+          )}
         </KeyboardAwareScrollView>
       </SafeAreaView>
     );
