@@ -27,8 +27,18 @@ const SearchStack = createStackNavigator({
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    Search: SearchStack,
-    NewCustomer: NewCustomerStack
+    Search: {
+      screen: SearchStack,
+      navigationOptions: {
+        drawerLabel: "Find a Customer"
+      }
+    },
+    NewCustomer: {
+      screen: NewCustomerStack,
+      navigationOptions: {
+        drawerLabel: "Add a New Customer"
+      }
+    }
   },
   { contentComponent: DrawerContentView }
 );

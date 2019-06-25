@@ -22,6 +22,10 @@ class NewCustomerScreen extends Component {
     }
   };
 
+  static navigationOptions = {
+    drawerLabel: "New Customer"
+  };
+
   Input = ({ propName }) => (
     <ControlledInput binder={this} propName={propName} />
   );
