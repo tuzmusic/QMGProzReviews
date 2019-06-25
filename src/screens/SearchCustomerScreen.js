@@ -15,7 +15,7 @@ export class SearchCustomerScreen extends Component {
   }
 
   componentDidMount = () => {
-    // this.automate();
+    setTimeout(this.automate.bind(this), 100);
   };
 
   state = {
@@ -38,7 +38,7 @@ export class SearchCustomerScreen extends Component {
     return (
       <View style={styles.container}>
         <Text h4>Search for your Client </Text>
-        <Text style={{ marginTop: 10 }}>What's your client's address?</Text>
+        <Text style={{ marginTop: 10 }}>What's youdr client's address?</Text>
         <Input
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}

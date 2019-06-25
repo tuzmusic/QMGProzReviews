@@ -28,6 +28,7 @@ export class CustomerScreen extends Component {
     const review = new Review({
       id: Math.floor(1000 + Math.random() * 9000),
       user: { firstName: "Sample", lastName: "User" },
+      user: this.props.user,
       customerId: this.props.customer.id,
       content,
       rating
@@ -71,7 +72,10 @@ export class CustomerScreen extends Component {
 }
 
 export default connect(
-  ({ customers }) => ({ allCustomers: customers.customers }),
+  ({ customers, auth }) => ({
+    allCustomers: customers.customers,
+    user: auth.user.user
+  }),
   { addNewReview }
 )(CustomerScreen);
 

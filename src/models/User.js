@@ -1,15 +1,6 @@
 // @flow
 import Sugar from "sugar";
-/* 
-type UserObject = {
-  id: number,
-  firstName: string,
-  lastName: string,
-  dateCreated?: string | { raw: string },
-  username: string,
-  email: string
-};
- */
+
 export default class User {
   id: number;
   firstName: string;
@@ -32,6 +23,7 @@ export default class User {
   }
 
   get fullName(): string {
+    if (!this.firstName && !this.lastName) return null;
     return [this.firstName, this.lastName].join(" ");
   }
 
@@ -42,10 +34,19 @@ export default class User {
       firstName: json.firstname,
       lastName: json.lastname
     };
-    // reviews (and users) are probably represented in the api as links.
-    // convert them here to objects? or not?
+    // TO-DO: Convert API properties to constructor properties
     return new User(userObject);
   }
 }
 
+/* 
+type UserObject = {
+  id: number,
+  firstName: string,
+  lastName: string,
+  dateCreated?: string | { raw: string },
+  username: string,
+  email: string
+};
 // type OpenObject = { [key: string]: any };
+ */

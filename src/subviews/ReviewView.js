@@ -15,7 +15,7 @@ export default ReviewView = ({ review }) => {
       />
       <Text style={styles.dateText}>{review.timePast}</Text>
       <Text style={styles.contentText}>{review.content}</Text>
-      <Text style={styles.userText}>– {user.fullName}</Text>
+      <Text style={styles.userText}>– {user.fullName || user.username}</Text>
     </View>
   );
 };
