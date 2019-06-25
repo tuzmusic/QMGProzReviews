@@ -23,7 +23,7 @@ export default class User {
   }
 
   get fullName(): string {
-    if (!this.firstName && !this.lastName) return null;
+    if (!this.firstName && !this.lastName) return "";
     return [this.firstName, this.lastName].join(" ");
   }
 

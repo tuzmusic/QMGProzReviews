@@ -15,7 +15,7 @@ class NewCustomerScreen extends Component {
     address: "123 State St.",
     phone: "987-765-6543",
     email: "butt@poop.fart",
-    showReview: true,
+    showReview: false,
     review: {
       content: "Review for this new dude",
       rating: 4
