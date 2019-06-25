@@ -25,7 +25,7 @@ export default class NewReviewScreen extends Component {
         <View style={styles.ratingContainer}>
           <Text style={styles.ratingLabel}>Rating</Text>
           <AirbnbRating
-            defaultRating={context.state.rating}
+            defaultRating={context.state.rating || context.state.review.rating}
             showRating={false}
             onFinishRating={rating => context.setState({ rating })}
             imageSize={10}
@@ -37,7 +37,7 @@ export default class NewReviewScreen extends Component {
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}
           placeholder={"Enter your review"}
-          value={context.state.content}
+          value={context.state.content || context.state.review.content}
           onChangeText={content => context.setState({ content })}
           multiline={true}
           textAlignVertical={"top"}

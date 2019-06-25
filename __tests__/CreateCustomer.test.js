@@ -28,10 +28,12 @@ describe("creating a customer", () => {
   const initialState = {
     customers: { [existingCustomer.id]: existingCustomer },
     currentCustomer: null,
-    searchResults: null
+    searchResults: null,
+    error: null
   };
   const stateWithNewCustomer = {
     ...initialState,
+    currentCustomer: customerWithId,
     customers: {
       [existingCustomer.id]: existingCustomer,
       [customerWithId.id]: customerWithId

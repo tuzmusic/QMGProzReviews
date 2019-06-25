@@ -6,17 +6,18 @@ import { ThemeProvider, Text, Divider, Button } from "react-native-elements";
 import NewReviewScreen from "./NewReviewScreen";
 import { SafeAreaView } from "react-navigation";
 import ControlledInput from "../subviews/ControlledInput";
+import { createCustomer } from "../redux/action-creators/customerActionCreators";
 
-export default class NewCustomerScreen extends Component {
+class NewCustomerScreen extends Component {
   state = {
-    firstName: "",
-    lastName: "",
-    address: "",
-    phone: "",
-    email: "",
+    firstName: "Someone",
+    lastName: "New",
+    address: "123 State St.",
+    phone: "987-765-6543",
+    email: "butt@poop.fart",
     showReview: true,
     review: {
-      content: "",
+      content: "Review for this new dude",
       rating: 4
     }
   };
@@ -29,8 +30,19 @@ export default class NewCustomerScreen extends Component {
     this.setState({ showReview: !this.state.showReview });
   }
 
-  saveCustomer() {
+  async saveCustomer() {
+    // debugger;
+    // console.log(Object.entries(this.props.customers).length, "customers");
     console.log("saving");
+    await this.props.createCustomer({
+      ...this.state,
+      reviews: [this.state.review]
+    });
+    if ((customer = this.props.currentCustomer)) {
+      this.props.navigation.navigate("Customer", { customer });
+    } else if ((error = this.props.error)) {
+      console.log("Error saving new customer.");
+    }
   }
 
   render() {
@@ -67,6 +79,15 @@ export default class NewCustomerScreen extends Component {
   }
 }
 
+export default connect(
+  ({ customers: { customers, currentCustomer, error } }) => ({
+    customers,
+    currentCustomer,
+    error
+  }),
+  { createCustomer }
+)(NewCustomerScreen);
+
 const styles = {
   rootContainer: { margin: 20, paddingBottom: 40 },
   button: {
@@ -74,19 +95,10 @@ const styles = {
     marginHorizontal: 40,
     borderWidth: 1.5
   },
-  inputContainer: {
-    padding: 5
-  },
-  textContainer: {
-    padding: 20
-  },
   divider: {
     margin: 15,
     height: 4,
     borderRadius: 15,
     backgroundColor: "lightblue"
-  },
-  invisible: {
-    backgroundColor: "transparent"
   }
 };
