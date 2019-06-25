@@ -1,6 +1,6 @@
 // @flow
 import Sugar from "sugar";
-
+/* 
 type UserObject = {
   id: number,
   firstName: string,
@@ -9,7 +9,7 @@ type UserObject = {
   username: string,
   email: string
 };
-
+ */
 export default class User {
   id: number;
   firstName: string;
@@ -18,7 +18,7 @@ export default class User {
   username: string;
   email: string;
 
-  constructor(obj: UserObject) {
+  constructor(obj: Object) {
     this.id = obj.id;
     this.firstName = obj.firstName;
     this.lastName = obj.lastName;
@@ -31,11 +31,11 @@ export default class User {
       : new Sugar.Date(obj.dateCreated);
   }
 
-  get fullName() {
+  get fullName(): string {
     return [this.firstName, this.lastName].join(" ");
   }
 
-  static fromApi(json: OpenObject) {
+  static fromApi(json: Object) {
     const userObject = {
       ...json,
       dateCreated: json.registered,
@@ -48,4 +48,4 @@ export default class User {
   }
 }
 
-type OpenObject = { [key: string]: any };
+// type OpenObject = { [key: string]: any };
