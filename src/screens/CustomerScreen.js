@@ -11,6 +11,7 @@ import {
 import Customer from "../models/Customer";
 import Review from "../models/Review";
 import ReviewView from "../subviews/ReviewView";
+import ReviewsList from "../subviews/ReviewsList";
 import NewReviewScreen from "./NewReviewScreen";
 import { addNewReview } from "../redux/action-creators/customerActionCreators";
 
@@ -95,28 +96,6 @@ const CustomerInfo = ({ customer }) => {
         style={styles.rating}
         imageSize={20}
       />
-    </View>
-  );
-};
-
-export const ReviewsList = ({ customer, onStartReviewPress }) => {
-  const { reviews, averageRating } = customer;
-  return (
-    <View style={{ width: "100%" }}>
-      <Text style={styles.detailText}>{/* blank line */} </Text>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center"
-        }}
-      >
-        <Text h2>Reviews</Text>
-        <Button title="Leave a Review" onPress={onStartReviewPress} />
-      </View>
-      {reviews.map((review, i) => (
-        <ReviewView review={review} key={i} />
-      ))}
     </View>
   );
 };

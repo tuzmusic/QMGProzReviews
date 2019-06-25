@@ -15,7 +15,7 @@ import AuthStack from "../containers-navigators/AuthNavigator";
 import DrawerContentView from "../screens/DrawerContentView";
 
 const MainStack = createStackNavigator({
-  NewCustomer: NewCustomerScreen,
+  // NewCustomer: NewCustomerScreen,
   Search: SearchCustomerScreen,
   Results: CustomerSearchResultScreenContainer,
   Customer: CustomerScreenContainer
