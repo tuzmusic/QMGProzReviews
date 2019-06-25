@@ -11,7 +11,7 @@ export default class Customer {
   email: string;
   reviews: Review[];
 
-  constructor(obj: CustomerObject) {
+  constructor(obj: Object) {
     this.id = obj.id;
     this.firstName = obj.firstName;
     this.lastName = obj.lastName;
@@ -20,10 +20,10 @@ export default class Customer {
     this.phone = obj.phone;
     this.email = obj.email;
   }
-  get fullName() {
+  get fullName(): string {
     return [this.firstName, this.lastName].join(" ");
   }
-  get averageRating() {
+  get averageRating(): number {
     const ratings = this.reviews.map(r => r.rating);
     return Sugar.Array.average(ratings);
   }
@@ -40,7 +40,8 @@ export default class Customer {
 }
 
 type CustomerApiPayload = { [key: string]: any }; // TBD!
-type CustomerObject = {
+
+/* type CustomerObject = {
   id: number,
   firstName: string,
   lastName: string,
@@ -48,4 +49,4 @@ type CustomerObject = {
   phone: string,
   email: string,
   reviews: Review[]
-};
+}; */
