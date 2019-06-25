@@ -10,7 +10,7 @@ export default class Review {
   rating: number;
   date: Sugar.Date;
 
-  constructor(obj: ReviewObject) {
+  constructor(obj: Object) {
     this.id = obj.id;
     this.user = obj.user;
     this.customerId = obj.customerId;
@@ -27,14 +27,14 @@ export default class Review {
     return this.date.relative().raw;
   }
 
-  static fromApi(json: OpenObject) {
+  static fromApi(json: Object) {
     // customers (and users) are probably represented in the api as links.
     // convert them here to objects? or not?
     return new Review(json);
   }
 }
-type OpenObject = { [key: string]: any };
-
+// type OpenObject = { [key: string]: any };
+/* 
 export type ReviewObject = {
   id: number,
   user: User | { firstName: string, lastName: string },
@@ -43,3 +43,4 @@ export type ReviewObject = {
   rating: number,
   date?: string | { raw: string }
 };
+ */
