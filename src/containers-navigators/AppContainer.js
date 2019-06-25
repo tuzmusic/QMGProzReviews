@@ -15,14 +15,35 @@ import AuthStack from "../containers-navigators/AuthNavigator";
 import DrawerContentView from "../screens/DrawerContentView";
 
 const NewCustomerStack = createStackNavigator({
-  NewCustomer: NewCustomerScreen,
-  Customer: CustomerScreenContainer
+  NewCustomer: {
+    screen: NewCustomerScreen,
+    navigationOptions: { title: "New Customer" }
+  },
+  Customer: {
+    screen: CustomerScreenContainer,
+    navigationOptions: { title: "Customer" }
+  }
 });
 
 const SearchStack = createStackNavigator({
-  Search: SearchCustomerScreen,
-  Results: CustomerSearchResultScreenContainer,
-  Customer: CustomerScreenContainer
+  Search: {
+    screen: SearchCustomerScreen,
+    navigationOptions: {
+      title: "Search"
+    }
+  },
+  Results: {
+    screen: CustomerSearchResultScreenContainer,
+    navigationOptions: {
+      title: "Search Results"
+    }
+  },
+  Customer: {
+    screen: CustomerScreenContainer,
+    navigationOptions: {
+      title: "Customer"
+    }
+  }
 });
 
 const DrawerNavigator = createDrawerNavigator(
