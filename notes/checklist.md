@@ -25,7 +25,7 @@
 
 ## UI
 
-[ ] Move "Leave a Review" button next to "Reviews"
+[X] Move "Leave a Review" button next to "Reviews"
 [ ] Activity indicators on search, and submit review
 [ ] Show search results as overlay
 
@@ -35,3 +35,5 @@
 [ ] Add failure handling to saga actions (read API response for failure, not just thrown errors)
 
 ## Deal with USERS so they can be assigned to REVIEWS so we can use proper REVIEWS in NEW CUSTOMERS
+
+[X]
