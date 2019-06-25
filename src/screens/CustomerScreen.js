@@ -87,15 +87,19 @@ const CustomerInfo = ({ customer }) => {
       <Text style={styles.detailText}>{customer.address}</Text>
       <Text style={styles.detailText}>{customer.phone}</Text>
       <Text style={styles.detailText}>{customer.email}</Text>
-      <Text style={styles.detailText}>
-        Rating ({customer.reviews.length} reviews):
-      </Text>
-      <Rating
-        readonly
-        startingValue={customer.averageRating}
-        style={styles.rating}
-        imageSize={20}
-      />
+      {customer.reviews.length > 0 && (
+        <View>
+          <Text style={styles.detailText}>
+            Rating ({customer.reviews.length} reviews):
+          </Text>
+          <Rating
+            readonly
+            startingValue={customer.averageRating}
+            style={styles.rating}
+            imageSize={20}
+          />
+        </View>
+      )}
     </View>
   );
 };

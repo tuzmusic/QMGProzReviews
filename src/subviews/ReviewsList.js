@@ -11,7 +11,7 @@ export default ReviewsList = ({ customer, onStartReviewPress }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: 15
+          marginTop: reviews.length ? 15 : 30
         }}
       >
         <Text h2>Reviews</Text>
