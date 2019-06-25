@@ -23,20 +23,28 @@ class DrawerContentView extends Component {
     return (
       <SafeAreaView>
         <ScrollView contentContainerStyle={styles.container}>
-          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-            Logged in as {this.props.user.username}
-          </Text>
-          <Button
-            title="Log Out"
-            buttonStyle={styles.button}
-            onPress={this.props.logout}
-            loading={this.props.isLoading}
-          />
+          <UserSection props={this.props} />
         </ScrollView>
       </SafeAreaView>
     );
   }
 }
+
+const UserSection = ({ props }) => {
+  return (
+    <View>
+      <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+        Logged in as {props.user.username}
+      </Text>
+      <Button
+        title="Log Out"
+        buttonStyle={styles.button}
+        onPress={props.logout}
+        loading={props.isLoading}
+      />
+    </View>
+  );
+};
 
 export default connect(
   ({ auth }) => ({ user: auth.user?.user, isLoading: auth.isLoading }),
