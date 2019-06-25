@@ -12,11 +12,13 @@ class DrawerContentView extends Component {
 
   shouldComponentUpdate(newProps) {
     if (!newProps.user) {
+      // just logged out
       this.props.navigation.navigate("Auth");
       return false;
     }
     return true;
   }
+
   render() {
     return (
       <ScrollView contentContainerStyle={styles.container}>
@@ -44,7 +46,7 @@ export default connect(
 const styles = {
   container: {
     alignItems: "center",
-    marginVertical: 20
+    marginVertical: 50
   },
   button: {
     margin: 20,

@@ -18,6 +18,7 @@ const MainStack = createStackNavigator({
   Results: CustomerSearchResultScreenContainer,
   Customer: CustomerScreenContainer
 });
+
 const DrawerNavigator = createDrawerNavigator(
   {
     Main: MainStack

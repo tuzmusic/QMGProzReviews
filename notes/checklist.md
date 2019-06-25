@@ -10,12 +10,12 @@
 
 ## Functionality
 
-[ ] Login
+[X] Login
 [ ] User
 [ ] Username in review
 [ ] Profile page
-[ ] Log out
-[ ] Store customers, reviews, etc
+[X] Log out
+[ ] Store customers, reviews, etc (AsyncStorage)
 [ ] Clear storage
 [ ] New customer
 
@@ -28,3 +28,12 @@
 [ ] Move "Leave a Review" button next to "Reviews"
 [ ] Activity indicators on search, and submit review
 [ ] Show search results as overlay
+
+## Corrections
+
+[ ] Add/manage toApi methods for all models
+[ ] Add failure handling to saga actions (read API response for failure, not just thrown errors)
+
+## Deal with USERS so they can be assigned to REVIEWS so we can use proper REVIEWS in NEW CUSTOMERS
+
+[ ] customers need to also be assigned to the user who created them

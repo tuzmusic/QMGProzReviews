@@ -10,13 +10,13 @@ export class SearchCustomerScreen extends Component {
   });
 
   automate() {
-    // this.handleSearch();
-    this.props.navigation.toggleDrawer();
+    this.handleSearch();
+    // this.props.navigation.toggleDrawer();
   }
 
-  componentDidMount = () => {
-    this.automate();
-  };
+  componentDidMount() {
+    setTimeout(this.automate.bind(this), 500);
+  }
 
   state = {
     text: "55-57 59th St",
