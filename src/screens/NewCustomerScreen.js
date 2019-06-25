@@ -31,12 +31,10 @@ class NewCustomerScreen extends Component {
   }
 
   async saveCustomer() {
-    // debugger;
-    // console.log(Object.entries(this.props.customers).length, "customers");
-    console.log("saving");
+    const review = { ...this.state.review, user: this.props.user };
     await this.props.createCustomer({
       ...this.state,
-      reviews: [this.state.review]
+      reviews: [review]
     });
     if ((customer = this.props.currentCustomer)) {
       this.props.navigation.navigate("Customer", { customer });
@@ -80,10 +78,11 @@ class NewCustomerScreen extends Component {
 }
 
 export default connect(
-  ({ customers: { customers, currentCustomer, error } }) => ({
+  ({ customers: { customers, currentCustomer, error }, auth }) => ({
     customers,
     currentCustomer,
-    error
+    error,
+    user: auth.user.user
   }),
   { createCustomer }
 )(NewCustomerScreen);
