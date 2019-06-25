@@ -34,7 +34,7 @@ class NewCustomerScreen extends Component {
     const review = { ...this.state.review, user: this.props.user };
     await this.props.createCustomer({
       ...this.state,
-      reviews: [review]
+      reviews: this.state.showReview ? [review] : []
     });
     if ((customer = this.props.currentCustomer)) {
       this.props.navigation.navigate("Customer", { customer });

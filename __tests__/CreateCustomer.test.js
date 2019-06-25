@@ -83,6 +83,8 @@ describe("creating a customer", () => {
       ]);
     });
 
+    xit("fails if trying to create a customer who already exists (and then presents an interface for selecting the existing customer; adding a review, etc)", () => {});
+
     xit("returns a failure action if the API call fails", async () => {
       const createCustomerApi = jest.fn();
       createCustomerApi
