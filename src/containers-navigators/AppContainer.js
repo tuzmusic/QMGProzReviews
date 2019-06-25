@@ -14,8 +14,12 @@ import {
 import AuthStack from "../containers-navigators/AuthNavigator";
 import DrawerContentView from "../screens/DrawerContentView";
 
-const MainStack = createStackNavigator({
+const NewCustomerStack = createStackNavigator({
   NewCustomer: NewCustomerScreen,
+  Customer: CustomerScreenContainer
+});
+
+const SearchStack = createStackNavigator({
   Search: SearchCustomerScreen,
   Results: CustomerSearchResultScreenContainer,
   Customer: CustomerScreenContainer
@@ -23,7 +27,8 @@ const MainStack = createStackNavigator({
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    Main: MainStack
+    Search: SearchStack,
+    NewCustomer: NewCustomerStack
   },
   { contentComponent: DrawerContentView }
 );
@@ -31,10 +36,8 @@ const DrawerNavigator = createDrawerNavigator(
 const SwitchNavigator = createSwitchNavigator({
   Auth: AuthStack,
   Main: DrawerNavigator
-  // Main: MainStack
 });
 
 const AppNavigator = SwitchNavigator;
-// const AppNavigator = MainStack;
 
 export default AppContainer = createAppContainer(AppNavigator);

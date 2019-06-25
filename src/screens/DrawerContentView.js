@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ScrollView, View } from "react-native";
 import { Button, Text } from "react-native-elements";
-import { SafeAreaView } from "react-navigation";
+import { DrawerItems, SafeAreaView } from "react-navigation";
 import { connect } from "react-redux";
 import { logout } from "../redux/actions/authActions";
 
@@ -24,6 +24,7 @@ class DrawerContentView extends Component {
       <SafeAreaView>
         <ScrollView contentContainerStyle={styles.container}>
           <UserSection props={this.props} />
+          <DrawerItems {...this.props} />
         </ScrollView>
       </SafeAreaView>
     );
@@ -32,7 +33,7 @@ class DrawerContentView extends Component {
 
 const UserSection = ({ props }) => {
   return (
-    <View>
+    <View style={{ alignItems: "center" }}>
       <Text style={{ fontSize: 18, fontWeight: "bold" }}>
         Logged in as {props.user.username}
       </Text>
@@ -53,7 +54,7 @@ export default connect(
 
 const styles = {
   container: {
-    alignItems: "center",
+    // alignItems: "center",
     marginVertical: 50
   },
   button: {

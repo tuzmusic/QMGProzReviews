@@ -10,8 +10,8 @@ export class SearchCustomerScreen extends Component {
   });
 
   automate() {
-    this.handleSearch();
-    // this.props.navigation.toggleDrawer();
+    // this.handleSearch();
+    this.props.navigation.toggleDrawer();
   }
 
   componentDidMount = () => {
