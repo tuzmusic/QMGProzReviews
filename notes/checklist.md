@@ -35,5 +35,3 @@
 [ ] Add failure handling to saga actions (read API response for failure, not just thrown errors)
 
 ## Deal with USERS so they can be assigned to REVIEWS so we can use proper REVIEWS in NEW CUSTOMERS
-
-[ ] customers need to also be assigned to the user who created them

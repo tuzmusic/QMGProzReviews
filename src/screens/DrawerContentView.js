@@ -21,8 +21,8 @@ class DrawerContentView extends Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <SafeAreaView>
+      <SafeAreaView>
+        <ScrollView contentContainerStyle={styles.container}>
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
             Logged in as {this.props.user.username}
           </Text>
@@ -32,8 +32,8 @@ class DrawerContentView extends Component {
             onPress={this.props.logout}
             loading={this.props.isLoading}
           />
-        </SafeAreaView>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }

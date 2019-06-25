@@ -42,7 +42,7 @@ describe("creating a review", () => {
 });
 
 describe("addReviewSaga", () => {
-  fit("adds a review to a customer with a saga", async () => {
+  it("adds a review to a customer with a saga", async () => {
     const dispatched = await recordSaga(addReviewSaga, startAction);
     expect(dispatched).toContainEqual(successAction);
   });

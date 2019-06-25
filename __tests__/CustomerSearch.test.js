@@ -1,10 +1,10 @@
 import reducer from "../src/redux/reducers/customerReducer";
 import Customer from "../src/models/Customer";
 import customerSaga, {
-  searchCustomers,
   searchSaga,
   searchApi
 } from "../src/redux/actions/customerActions";
+import { searchCustomers } from "../src/redux/action-creators/customerActionCreators";
 import customers from "../__mocks__/customers";
 import SagaTester from "redux-saga-tester";
 import recordSaga from "../recordSaga";
@@ -32,9 +32,9 @@ describe("searchSaga", () => {
 
   it("returns an error on a failure", async () => {
     const error = new Error("uh oh!");
-    const spy = jest
-      .spyOn(Array.prototype, "filter")
-      .mockImplementation(() => throw error);
+    const spy = jest.spyOn(Array.prototype, "filter").mockImplementation(() => {
+      throw error;
+    });
     const expectedAction = { type: "CUSTOMER_SEARCH_FAILURE", error };
     try {
       const dispatched = await recordSaga(searchSaga, initialAction);

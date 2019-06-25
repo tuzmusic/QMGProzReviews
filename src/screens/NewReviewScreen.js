@@ -14,15 +14,20 @@ export default class NewReviewScreen extends Component {
     // content: "",
     rating: 4
   };
+
+  static defaultProps = {
+    showButtons: true
+  };
   render() {
+    const context = this.props.parent || this;
     return (
       <View style={styles.container}>
         <View style={styles.ratingContainer}>
           <Text style={styles.ratingLabel}>Rating</Text>
           <AirbnbRating
-            defaultRating={this.state.rating}
+            defaultRating={context.state.rating || context.state.review.rating}
             showRating={false}
-            onFinishRating={rating => this.setState({ rating })}
+            onFinishRating={rating => context.setState({ rating })}
             imageSize={10}
           />
         </View>
@@ -32,20 +37,26 @@ export default class NewReviewScreen extends Component {
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}
           placeholder={"Enter your review"}
-          value={this.state.content}
-          onChangeText={content => this.setState({ content })}
+          value={context.state.content || context.state.review.content}
+          onChangeText={content => context.setState({ content })}
           multiline={true}
           textAlignVertical={"top"}
           numberOfLines={100}
           labelStyle={styles.ratingLabel}
         />
-        <View style={styles.buttonsContainer}>
-          <Button
-            title="Submit"
-            onPress={() => this.props.onSubmit(this.state)}
-          />
-          <Button title="Cancel" type="outline" onPress={this.props.onCancel} />
-        </View>
+        {this.props.showButtons && (
+          <View style={styles.buttonsContainer}>
+            <Button
+              title="Submit"
+              onPress={() => context.props.onSubmit(this.state)}
+            />
+            <Button
+              title="Cancel"
+              type="outline"
+              onPress={context.props.onCancel}
+            />
+          </View>
+        )}
       </View>
     );
   }

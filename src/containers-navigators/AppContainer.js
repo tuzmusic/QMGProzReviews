@@ -4,6 +4,7 @@ import CustomerScreenContainer from "../containers-navigators/CustomerScreenCont
 import CustomerSearchResultScreenContainer from "../containers-navigators/CustomerSearchResultScreenContainer.js";
 import CustomerSearchResultScreen from "../screens/CustomerSearchResultScreen";
 import SearchCustomerScreen from "../screens/SearchCustomerScreen";
+import NewCustomerScreen from "../screens/NewCustomerScreen";
 import {
   createStackNavigator,
   createAppContainer,
@@ -14,6 +15,7 @@ import AuthStack from "../containers-navigators/AuthNavigator";
 import DrawerContentView from "../screens/DrawerContentView";
 
 const MainStack = createStackNavigator({
+  NewCustomer: NewCustomerScreen,
   Search: SearchCustomerScreen,
   Results: CustomerSearchResultScreenContainer,
   Customer: CustomerScreenContainer

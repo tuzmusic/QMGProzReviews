@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { Text, Input, Button, Overlay } from "react-native-elements";
 import { connect } from "react-redux";
-import { searchCustomers } from "../redux/actions/customerActions";
+import { searchCustomers } from "../redux/action-creators/customerActionCreators";
 
 export class SearchCustomerScreen extends Component {
   static navigationOptions = () => ({
@@ -14,9 +14,9 @@ export class SearchCustomerScreen extends Component {
     // this.props.navigation.toggleDrawer();
   }
 
-  componentDidMount() {
-    setTimeout(this.automate.bind(this), 500);
-  }
+  componentDidMount = () => {
+    // this.automate();
+  };
 
   state = {
     text: "55-57 59th St",
