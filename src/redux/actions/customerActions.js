@@ -13,12 +13,18 @@ export function* createCustomerSaga({
   customer: cust
 }: CreateArgs): Saga<void> {
   try {
-    // TO-DO: Check API response for failure!
-    const customer = createCustomerApi(cust);
-    yield put({
-      type: "NEW_CUSTOMER_SUCCESS",
-      customer
-    });
+    const { customer, error } = createCustomerApi(cust);
+    if (customer) {
+      yield put({
+        type: "NEW_CUSTOMER_SUCCESS",
+        customer: Customer.fromApi(customer)
+      });
+    } else if (error) {
+      yield put({
+        type: "NEW_CUSTOMER_FAILURE",
+        error
+      });
+    }
   } catch (error) {
     yield put({
       type: "NEW_CUSTOMER_FAILURE",
@@ -27,15 +33,12 @@ export function* createCustomerSaga({
   }
 }
 
-export function createCustomerApi(customer: Customer) {
+export function createCustomerApi(customer: Customer): Object {
   // Create an API-friendly payload
   const payload = Customer.toApi(customer);
-
-  // Post using the online API
-  const returned = payload;
-
-  // Convert the API return value back into a Customer object
-  return Customer.fromApi(returned);
+  // Post using the online API and return the result
+  // currently a dummy response (success)
+  return { customer: payload };
 }
 
 export function* searchSaga({ searchParams }: SearchArgs): Saga<void> {

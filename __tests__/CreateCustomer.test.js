@@ -80,5 +80,22 @@ describe("creating a customer", () => {
         successAction
       ]);
     });
+
+    xit("returns a failure action if the API call fails", async () => {
+      const createCustomerApi = jest.fn();
+      createCustomerApi
+        // jest.spyOn(null, "createCustomerApi")
+        .mockImplementation(() => {
+          console.log("hello from mock function");
+          return { error: "Something went wrong" };
+        });
+      sagaStore.dispatch(startAction);
+      await sagaStore.waitFor(successAction.type);
+      // expect(createCustomerApi).toHaveBeenCalled();
+      expect(sagaStore.getCalledActions()).toEqual([
+        startAction,
+        { type: "NEW_CUSTOMER_FAILURE", error: "Something went wrong" }
+      ]);
+    });
   });
 });
