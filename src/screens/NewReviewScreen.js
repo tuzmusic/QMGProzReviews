@@ -10,8 +10,8 @@ import { View, StyleSheet } from "react-native";
 
 export default class NewReviewScreen extends Component {
   state = {
-    content: "Here's another review.",
-    // content: "",
+    // content: "Here's another review.",
+    content: " ",
     rating: 4
   };
 

@@ -25,12 +25,12 @@ class LoginView extends Component {
   };
 
   componentDidMount() {
-    const autoLogin = () => {
+    const automate = () => {
       setTimeout(() => {
         this.handleLogin({ username: "testuser1", password: "123123" });
       }, 500);
     };
-    autoLogin();
+    // automate();
   }
 
   async handleLogin({ username, password }) {

@@ -19,6 +19,16 @@ class NewCustomerScreen extends Component {
     review: {
       content: "Review for this new dude",
       rating: 4
+    },
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+    email: "",
+    showReview: false,
+    review: {
+      content: "",
+      rating: 4
     }
   };
 
@@ -49,8 +59,8 @@ class NewCustomerScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <KeyboardAwareScrollView contentContainerStyle={styles.rootContainer}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.rootContainer}>
+        <SafeAreaView>
           <Text h2>New Customer</Text>
           <this.Input propName={"firstName"} />
           <this.Input propName={"lastName"} />
@@ -75,8 +85,8 @@ class NewCustomerScreen extends Component {
               onPress={this.saveCustomer.bind(this)}
             />
           </View>
-        </KeyboardAwareScrollView>
-      </SafeAreaView>
+        </SafeAreaView>
+      </KeyboardAwareScrollView>
     );
   }
 }

@@ -69,7 +69,8 @@ export default customers = {
           firstName: "Cole",
           lastName: "Harris"
         },
-        content: "John smith paid me on time and was a pleasure to work with",
+        content:
+          "Jane smith's husband paid me on time and was a pleasure to work with",
         date: new Date("6-1-2013"),
         rating: 5
       }

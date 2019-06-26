@@ -19,7 +19,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(combinedReducer, {}, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
-setupAuthMockAdapter();
+// setupAuthMockAdapter();
 
 export default function App() {
   return (

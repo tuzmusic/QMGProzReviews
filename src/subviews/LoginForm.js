@@ -5,8 +5,10 @@ import { connect } from "react-redux";
 
 class LoginForm extends Component {
   state = {
-    username: "testuser1",
-    password: "123123"
+    // username: "testuser1",
+    // password: "123123"
+    username: "",
+    email: ""
   };
 
   render() {

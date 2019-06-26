@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { View } from "react-native";
 import { Text, Input, Button, Overlay } from "react-native-elements";
 import { connect } from "react-redux";
@@ -15,13 +16,13 @@ export class SearchCustomerScreen extends Component {
   }
 
   componentDidMount = () => {
-    setTimeout(this.automate.bind(this), 100);
+    // setTimeout(this.automate.bind(this), 100);
   };
 
   state = {
     text: "55-57 59th St",
-    text: "",
     text: "123 Main St",
+    text: "",
     searchField: "address"
   };
 
@@ -36,9 +37,9 @@ export class SearchCustomerScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.container}>
         <Text h4>Search for your Client </Text>
-        <Text style={{ marginTop: 10 }}>What's youdr client's address?</Text>
+        <Text style={{ marginTop: 10 }}>What's your client's address?</Text>
         <Input
           inputStyle={styles.input}
           inputContainerStyle={styles.inputContainer}
@@ -53,7 +54,7 @@ export class SearchCustomerScreen extends Component {
           type="outline"
           onPress={this.handleSearch.bind(this)}
         />
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
