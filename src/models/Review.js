@@ -25,6 +25,7 @@ export default class Review {
     this.customerId = obj.customerId;
     this.content = obj.content;
     this.rating = obj.rating;
+
     this.date = !obj.date
       ? new Sugar.Date()
       : obj.date.raw // should only happen if obj has already been created as a Review (I think?)
@@ -33,6 +34,8 @@ export default class Review {
   }
 
   get timePast(): string {
+    // console.log("inside timePast. date:", this.date);
+
     return this.date.relative().raw;
   }
 

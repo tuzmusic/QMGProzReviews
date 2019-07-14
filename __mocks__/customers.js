@@ -8,23 +8,25 @@ export default customers = {
     lastName: "Smith",
     address: "55-57 59th St",
     phone: "545-985-8727",
-    email: "listing@site-example.com",
+    email: "listing@example.com",
     reviews: [
       {
+        id: 1,
         user: {
           firstName: "Cole",
           lastName: "Harris"
         },
         content: "John smith paid me on time and was a pleasure to work with",
-        date: new Date("6-1-2013"),
+        date: new Date("June 1, 2013"),
         rating: 5
       },
       {
+        id: 2,
         user: {
           firstName: "Jonathan"
         },
         content: "John Smith is great!",
-        date: new Date("6-1-2019"),
+        date: new Date("June 1, 2019"),
         rating: 5
       }
     ].map(r => new Review(r))
@@ -35,23 +37,25 @@ export default customers = {
     lastName: "Dore",
     address: "123 Main St",
     phone: "098-765-5432",
-    email: "albert@site-example.com",
+    email: "albert@example.com",
     reviews: [
       {
+        id: 3,
         user: {
           firstName: "Josh",
           lastName: "Purses"
         },
         content: "Albert is the worst!",
-        date: new Date("6-1-2013"),
+        date: new Date("June 1, 2013"),
         rating: 1
       },
       {
+        id: 4,
         user: {
           firstName: "Jonathan"
         },
         content: "I hate this guy.",
-        date: new Date("6-1-2019"),
+        date: new Date("June 1, 2019"),
         rating: 3
       }
     ].map(r => new Review(r))
@@ -62,16 +66,17 @@ export default customers = {
     lastName: "Smith",
     address: "55-57 59th St",
     phone: "545-985-8727",
-    email: "listing@site-example.com",
+    email: "listing@example.com",
     reviews: [
       {
+        id: 5,
         user: {
           firstName: "Cole",
           lastName: "Harris"
         },
         content:
           "Jane smith's husband paid me on time and was a pleasure to work with",
-        date: new Date("6-1-2013"),
+        date: new Date("June 1, 2013"),
         rating: 5
       }
     ].map(r => new Review(r))

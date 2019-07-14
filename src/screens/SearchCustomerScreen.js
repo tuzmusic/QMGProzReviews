@@ -11,18 +11,18 @@ export class SearchCustomerScreen extends Component {
   });
 
   automate() {
-    // this.handleSearch();
-    this.props.navigation.toggleDrawer();
+    this.handleSearch();
+    // this.props.navigation.toggleDrawer();
   }
 
   componentDidMount = () => {
-    // setTimeout(this.automate.bind(this), 100);
+    setTimeout(this.automate.bind(this), 100);
   };
 
   state = {
     text: "55-57 59th St",
-    text: "123 Main St",
     text: "",
+    text: "123 Main St",
     searchField: "address"
   };
 
