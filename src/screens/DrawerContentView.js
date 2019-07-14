@@ -4,6 +4,7 @@ import { Button, Text } from "react-native-elements";
 import { DrawerItems, SafeAreaView } from "react-navigation";
 import { connect } from "react-redux";
 import { logout } from "../redux/actions/authActions";
+import { AsyncStorage } from "react-native";
 
 class DrawerContentView extends Component {
   componentDidMount() {
@@ -32,6 +33,11 @@ class DrawerContentView extends Component {
 }
 
 const UserSection = ({ props }) => {
+  async function handleLogout() {
+    await AsyncStorage.setItem("prozreviews_logged_in_user", "");
+    props.logout();
+  }
+
   return (
     <View style={{ alignItems: "center" }}>
       <Text style={{ fontSize: 18, fontWeight: "bold" }}>
@@ -40,7 +46,7 @@ const UserSection = ({ props }) => {
       <Button
         title="Log Out"
         buttonStyle={styles.button}
-        onPress={props.logout}
+        onPress={handleLogout}
         loading={props.isLoading}
       />
     </View>
