@@ -27,7 +27,7 @@ export class CustomerScreen extends Component {
     await setTimeout(this.startReview.bind(this), 10);
   }
   componentDidMount() {
-    this.automate();
+    // this.automate();
   }
 
   createReview({ content, rating }) {

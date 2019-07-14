@@ -17,7 +17,7 @@ export class SearchCustomerScreen extends Component {
   }
 
   componentDidMount = () => {
-    setTimeout(this.automate.bind(this), 100);
+    // setTimeout(this.automate.bind(this), 100);
   };
 
   state = {
@@ -75,7 +75,9 @@ const styles = {
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    paddingHorizontal: 10,
+    top: -90
   },
   input: {
     borderColor: "grey",

@@ -30,7 +30,7 @@ class LoginView extends Component {
         this.handleLogin({ username: "letmein", password: "123123" });
       }, 500);
     };
-    automate();
+    // automate();
   }
 
   async handleLogin({ username, password }) {
