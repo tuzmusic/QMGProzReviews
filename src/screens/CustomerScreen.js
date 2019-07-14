@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StyleSheet, ScrollView, View } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  KeyboardAvoidingView
+} from "react-native";
 import {
   ThemeProvider,
   Text,
@@ -22,7 +27,7 @@ export class CustomerScreen extends Component {
     await setTimeout(this.startReview.bind(this), 10);
   }
   componentDidMount() {
-    // this.automate();
+    this.automate();
   }
 
   createReview({ content, rating }) {
@@ -50,23 +55,29 @@ export class CustomerScreen extends Component {
     const customer = this.props.allCustomers[this.props.customer.id];
     return (
       <ThemeProvider theme={theme}>
-        <ScrollView contentContainerStyle={styles.scrollView}>
-          <CustomerInfo customer={customer} />
-          {!this.state.isReviewing ? (
-            <View style={{ width: "100%" }}>
-              <ReviewsList
-                customer={customer}
-                onStartReviewPress={this.startReview.bind(this)}
+        <KeyboardAvoidingView
+          style={styles.container}
+          enabled
+          behavior="position"
+        >
+          <ScrollView contentContainerStyle={styles.scrollView}>
+            <CustomerInfo customer={customer} />
+            {!this.state.isReviewing ? (
+              <View style={{ width: "100%" }}>
+                <ReviewsList
+                  customer={customer}
+                  onStartReviewPress={this.startReview.bind(this)}
+                />
+              </View>
+            ) : (
+              <NewReviewScreen
+                onCancel={this.cancelReview.bind(this)}
+                onSubmit={this.createReview.bind(this)}
               />
-            </View>
-          ) : (
-            <NewReviewScreen
-              onCancel={this.cancelReview.bind(this)}
-              onSubmit={this.createReview.bind(this)}
-            />
-          )}
-          <Divider style={{ height: 100 }} />
-        </ScrollView>
+            )}
+            <Divider style={{ height: 100 }} />
+          </ScrollView>
+        </KeyboardAvoidingView>
       </ThemeProvider>
     );
   }

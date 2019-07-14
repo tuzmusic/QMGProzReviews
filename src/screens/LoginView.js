@@ -27,10 +27,10 @@ class LoginView extends Component {
   componentDidMount() {
     const automate = () => {
       setTimeout(() => {
-        this.handleLogin({ username: "testuser1", password: "123123" });
+        this.handleLogin({ username: "letmein", password: "123123" });
       }, 500);
     };
-    // automate();
+    automate();
   }
 
   async handleLogin({ username, password }) {
@@ -96,11 +96,7 @@ class LoginView extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        style={styles.superContainer}
-        enabled
-        behavior="height"
-      >
+      <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior="height">
         <View style={styles.container}>
           <Overlay
             containerStyle={styles.modal}
@@ -182,10 +178,6 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     padding: 20
-  },
-  superContainer: {
-    flex: 1,
-    justifyContent: "center"
   },
   image: {
     height: 200,

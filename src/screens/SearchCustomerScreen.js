@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
-import { View } from "react-native";
+import { View, KeyboardAvoidingView } from "react-native";
 import { Text, Input, Button, Overlay } from "react-native-elements";
 import { connect } from "react-redux";
 import { searchCustomers } from "../redux/action-creators/customerActionCreators";
@@ -11,6 +11,7 @@ export class SearchCustomerScreen extends Component {
   });
 
   automate() {
+    this.setState({ text: "123 Main St" });
     this.handleSearch();
     // this.props.navigation.toggleDrawer();
   }
@@ -21,8 +22,8 @@ export class SearchCustomerScreen extends Component {
 
   state = {
     text: "55-57 59th St",
-    text: "",
     text: "123 Main St",
+    text: "",
     searchField: "address"
   };
 
@@ -37,7 +38,7 @@ export class SearchCustomerScreen extends Component {
 
   render() {
     return (
-      <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+      <KeyboardAvoidingView style={styles.container} enabled behavior="height">
         <Text h4>Search for your Client </Text>
         <Text style={{ marginTop: 10 }}>What's your client's address?</Text>
         <Input
@@ -54,7 +55,7 @@ export class SearchCustomerScreen extends Component {
           type="outline"
           onPress={this.handleSearch.bind(this)}
         />
-      </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

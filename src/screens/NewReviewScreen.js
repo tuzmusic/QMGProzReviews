@@ -6,7 +6,12 @@ import {
   AirbnbRating,
   Divider
 } from "react-native-elements";
-import { View, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  KeyboardAvoidingView
+} from "react-native";
 
 export default class NewReviewScreen extends Component {
   state = {

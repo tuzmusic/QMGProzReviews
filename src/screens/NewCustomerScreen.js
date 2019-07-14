@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
-import { View } from "react-native";
+import { View, KeyboardAvoidingView } from "react-native";
 import { ThemeProvider, Text, Divider, Button } from "react-native-elements";
 import NewReviewScreen from "./NewReviewScreen";
-import { SafeAreaView } from "react-navigation";
+import { SafeAreaView } from "react-native";
 import ControlledInput from "../subviews/ControlledInput";
 import { createCustomer } from "../redux/action-creators/customerActionCreators";
 
@@ -59,14 +58,18 @@ class NewCustomerScreen extends Component {
 
   render() {
     return (
-      <KeyboardAwareScrollView contentContainerStyle={styles.rootContainer}>
-        <SafeAreaView>
+      <KeyboardAvoidingView
+        style={{ flex: 1, justifyContent: "flex-start" }}
+        enabled
+        behavior="position"
+      >
+        <SafeAreaView style={{ margin: 20 }}>
           <Text h2>New Customer</Text>
-          <this.Input propName={"firstName"} />
-          <this.Input propName={"lastName"} />
-          <this.Input propName={"address"} />
-          <this.Input propName={"phone"} />
-          <this.Input propName={"email"} />
+          <ControlledInput binder={this} propName={"firstName"} />
+          <ControlledInput binder={this} propName={"lastName"} />
+          <ControlledInput binder={this} propName={"address"} />
+          <ControlledInput binder={this} propName={"phone"} />
+          <ControlledInput binder={this} propName={"email"} />
           {this.state.showReview && (
             <NewReviewScreen showButtons={false} parent={this} />
           )}
@@ -86,7 +89,7 @@ class NewCustomerScreen extends Component {
             />
           </View>
         </SafeAreaView>
-      </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
