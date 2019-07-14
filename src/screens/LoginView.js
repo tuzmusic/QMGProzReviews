@@ -159,12 +159,6 @@ export default connect(
 )(LoginView);
 
 const styles = {
-  image: {
-    height: 200,
-    width: 200,
-    marginBottom: 40
-  },
-
   errorText: {
     color: "red",
     fontSize: 16
@@ -182,7 +176,7 @@ const styles = {
   image: {
     height: 200,
     width: 200,
-    marginBottom: 40
+    resizeMode: "contain"
   },
   modalContainer: {
     flex: 1,
