@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview"
 import LoginForm from "../subviews/LoginForm";
 import RegisterForm from "../subviews/RegisterForm";
 import { validate } from "email-validator";
-import { AsyncStorage } from "react-native";
+import { AsyncStorage, KeyboardAvoidingView } from "react-native";
 
 class LoginView extends Component {
   state = {
@@ -96,7 +96,11 @@ class LoginView extends Component {
 
   render() {
     return (
-      <KeyboardAwareScrollView contentContainerStyle={styles.superContainer}>
+      <KeyboardAvoidingView
+        style={styles.superContainer}
+        enabled
+        behavior="height"
+      >
         <View style={styles.container}>
           <Overlay
             containerStyle={styles.modal}
@@ -144,7 +148,7 @@ class LoginView extends Component {
             />
           )}
         </View>
-      </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
