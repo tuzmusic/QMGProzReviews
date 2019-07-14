@@ -3,8 +3,33 @@ import MockAdapter from "axios-mock-adapter";
 import { ApiUrls } from "../../constants";
 import { loginResponse, registerResponse, registration } from "./authResponses";
 
-export function setupAuthMockAdapter() {
-  let mock = new MockAdapter(axios);
+export function setupMockAdapter({
+  customers = false,
+  auth = false,
+  letMeIn = true
+}) {
+  let mock = new MockAdapter(axios, { delayResponse: 1000 });
+  if (customers || auth)
+    console.log("WARNING: Using mock api - not connecting to the internet!");
+  // if (customers) setupCustomersMockAdapter(mock);
+  if (auth) setupAuthMockAdapter(mock);
+  if (letMeIn) setupLetMeIn(mock);
+  mock.onAny().passThrough();
+  return mock;
+}
+
+function setupLetMeIn(mock) {
+  mock
+    .onGet(ApiUrls.login, {
+      params: {
+        username: "letmein",
+        password: "123123"
+      }
+    })
+    .reply(200, loginResponse.apiResponse);
+}
+
+export function setupAuthMockAdapter(mock) {
   mock
     // register
     .onGet(ApiUrls.nonce)
@@ -61,5 +86,4 @@ export function setupAuthMockAdapter() {
     // logout
     .onGet(ApiUrls.logout)
     .reply(200, loginResponse.logout);
-  return mock;
 }

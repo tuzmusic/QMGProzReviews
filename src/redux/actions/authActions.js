@@ -45,9 +45,14 @@ export function* loginSaga({ creds }) {
       });
     }
   } catch (error) {
-    // console.log("login error:", error.message);
-    yield put({ type: "LOGIN_FAILURE", error: error.message });
+    yield put({ type: "LOGIN_FAILURE", error: parseError(error) });
   }
+}
+
+function parseError(error) {
+  if (error.stack?.includes("TypeError"))
+    return "Login/Registration Error.\nThis is probably a problem with the website.";
+  else return error.message;
 }
 
 export function* logoutSaga() {
@@ -55,7 +60,7 @@ export function* logoutSaga() {
     // yield call(logoutWithApi);
     yield put({ type: "LOGOUT_SUCCESS" });
   } catch (error) {
-    yield put({ type: "LOGOUT_FAILURE", error: error.message });
+    yield put({ type: "LOGOUT_FAILURE", error: parseError(error) });
   }
 }
 
@@ -76,7 +81,7 @@ export function* registerSaga({ info }) {
           }
     );
   } catch (error) {
-    yield put({ type: "REGISTRATION_FAILURE", error: error.message });
+    yield put({ type: "REGISTRATION_FAILURE", error: parseError(error) });
   }
 }
 
