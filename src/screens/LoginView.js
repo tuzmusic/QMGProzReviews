@@ -110,10 +110,6 @@ class LoginView extends Component {
             <View style={styles.modalContainer}>
               <DotIndicator color={"darkgrey"} />
               <Text>Logging in...</Text>
-              {/* <Text></Text>
-              <TouchableOpacity onPress={this.props.cancelLogin}>
-                <Text style={[styles.link]}>Cancel</Text>
-              </TouchableOpacity> */}
             </View>
           </Overlay>
           <Image
@@ -174,8 +170,8 @@ const styles = {
     padding: 20
   },
   image: {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     resizeMode: "contain"
   },
   modalContainer: {
