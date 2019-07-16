@@ -5,6 +5,15 @@ import { Text, Input, Button, Overlay } from "react-native-elements";
 import { connect } from "react-redux";
 import { searchCustomers } from "../redux/action-creators/customerActionCreators";
 
+const SwipeTip = props => {
+  return (
+    <View style={styles.tipContainer}>
+      <Text style={styles.tip}>swipe from left to create a new customer</Text>
+      <Text style={styles.arrow}>⃔</Text>
+    </View>
+  );
+};
+
 export class SearchCustomerScreen extends Component {
   static navigationOptions = () => ({
     headerTitle: "Search"
@@ -39,12 +48,6 @@ export class SearchCustomerScreen extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={styles.tipContainer}>
-          <Text style={styles.tip}>
-            swipe from left to create a new customer
-          </Text>
-          <Text style={styles.arrow}>⃔</Text>
-        </View>
         <KeyboardAvoidingView
           style={styles.container}
           enabled
@@ -67,6 +70,7 @@ export class SearchCustomerScreen extends Component {
             onPress={this.handleSearch.bind(this)}
           />
         </KeyboardAvoidingView>
+        <SwipeTip />
       </View>
     );
   }
@@ -85,11 +89,12 @@ const borderRadius = 30;
 const transform = [{ rotateX: "180deg" }];
 const styles = {
   container: {
-    flex: 1,
-    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+    position: "absolute",
     alignItems: "center",
-    paddingHorizontal: 10,
-    top: -90
+    top: "30%",
+    paddingHorizontal: 10
   },
   input: {
     borderColor: "grey",
@@ -104,6 +109,7 @@ const styles = {
     marginHorizontal: 5
   },
   tipContainer: {
+    position: "absolute",
     top: "3%",
     width: "35%"
   },
