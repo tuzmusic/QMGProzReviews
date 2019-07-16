@@ -26,6 +26,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "allow letmein login\nUpdate login errors\nMove inputs when keyboard present\nAllow drawer access over other screens in navigation stack"
+    "description": "7/16/19\nFix image size\nDisallow registration"
   }
 }

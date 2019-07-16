@@ -38,24 +38,36 @@ export class SearchCustomerScreen extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} enabled behavior="height">
-        <Text h4>Search for your Client </Text>
-        <Text style={{ marginTop: 10 }}>What's your client's address?</Text>
-        <Input
-          inputStyle={styles.input}
-          inputContainerStyle={styles.inputContainer}
-          clearButtonMode={"while-editing"}
-          containerStyle={{ padding: 0 }}
-          placeholder={"Enter address"}
-          value={this.state.text}
-          onChangeText={text => this.setState({ text })}
-        />
-        <Button
-          title="Search"
-          type="outline"
-          onPress={this.handleSearch.bind(this)}
-        />
-      </KeyboardAvoidingView>
+      <View style={{ flex: 1 }}>
+        <View style={styles.tipContainer}>
+          <Text style={styles.tip}>
+            swipe from left to create a new customer
+          </Text>
+          <Text style={styles.arrow}>⃔</Text>
+        </View>
+        <KeyboardAvoidingView
+          style={styles.container}
+          enabled
+          behavior="height"
+        >
+          <Text h4>Search for your Client </Text>
+          <Text style={{ marginTop: 10 }}>What's your client's address?</Text>
+          <Input
+            inputStyle={styles.input}
+            inputContainerStyle={styles.inputContainer}
+            clearButtonMode={"while-editing"}
+            containerStyle={{ padding: 0 }}
+            placeholder={"Enter address"}
+            value={this.state.text}
+            onChangeText={text => this.setState({ text })}
+          />
+          <Button
+            title="Search"
+            type="outline"
+            onPress={this.handleSearch.bind(this)}
+          />
+        </KeyboardAvoidingView>
+      </View>
     );
   }
 }
@@ -70,7 +82,7 @@ export default connect(
 
 const borderWidth = 0.5;
 const borderRadius = 30;
-
+const transform = [{ rotateX: "180deg" }];
 const styles = {
   container: {
     flex: 1,
@@ -90,5 +102,16 @@ const styles = {
     borderBottomWidth: 0,
     marginVertical: 15,
     marginHorizontal: 5
-  }
+  },
+  tipContainer: {
+    top: "3%",
+    width: "35%"
+  },
+  arrow: {
+    fontSize: 50,
+    top: -45,
+    color: "green",
+    transform: [{ rotate: "150deg" }, { rotateY: "180deg" }]
+  },
+  tip: { left: 20, color: "green" }
 };

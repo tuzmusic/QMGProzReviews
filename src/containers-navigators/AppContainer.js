@@ -75,7 +75,10 @@ const DrawerNavigator = createDrawerNavigator(
       }
     }
   },
-  { contentComponent: DrawerContentView }
+  {
+    contentComponent: DrawerContentView
+    // initialRouteName: "NewCustomer"
+  }
 );
 
 const SwitchNavigator = createSwitchNavigator({
