@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Input, Button, ThemeProvider } from "react-native-elements";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, Linking } from "react-native";
 import { connect } from "react-redux";
 
 class LoginForm extends Component {
@@ -12,6 +12,7 @@ class LoginForm extends Component {
   };
 
   render() {
+    const regUrl = "https://www.prozreviews.com/subscriber-new/";
     return (
       <ThemeProvider theme={theme}>
         <Input
@@ -42,10 +43,10 @@ class LoginForm extends Component {
           disabled={this.props.isLoading}
           onPress={() => this.props.onSubmit(this.state)}
         />
-        <TouchableOpacity onPress={this.props.onLinkClick}>
-          <Text style={{ fontSize: 16 }}>
-            Don't have an account? <Text style={styles.link}>Click here</Text>{" "}
-            to register.
+        <Text style={styles.text}>Don't have an account?</Text>
+        <TouchableOpacity onPress={() => Linking.openURL(regUrl)}>
+          <Text style={[styles.text, styles.link]}>
+            Register on our website.
           </Text>
         </TouchableOpacity>
       </ThemeProvider>
@@ -77,6 +78,7 @@ const theme = {
 };
 
 const styles = {
+  text: { fontSize: 20 },
   link: {
     color: "blue",
     textDecorationLine: "underline"

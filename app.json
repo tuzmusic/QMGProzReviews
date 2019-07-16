@@ -26,6 +26,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "Use mock login\nRemove date from reviews list (to temporarily run without crashing)"
+    "description": "allow letmein login\nUpdate login errors\nMove inputs when keyboard present\nAllow drawer access over other screens in navigation stack"
   }
 }
