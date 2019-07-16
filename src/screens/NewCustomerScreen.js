@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, KeyboardAvoidingView } from "react-native";
+import { View, KeyboardAvoidingView, ScrollView } from "react-native";
 import { ThemeProvider, Text, Divider, Button } from "react-native-elements";
 import NewReviewScreen from "./NewReviewScreen";
 import { SafeAreaView } from "react-native";
@@ -64,30 +64,36 @@ class NewCustomerScreen extends Component {
         behavior="position"
       >
         <SafeAreaView style={{ margin: 20 }}>
-          <Text h2>New Customer</Text>
-          <ControlledInput binder={this} propName={"firstName"} />
-          <ControlledInput binder={this} propName={"lastName"} />
-          <ControlledInput binder={this} propName={"address"} />
-          <ControlledInput binder={this} propName={"phone"} />
-          <ControlledInput binder={this} propName={"email"} />
-          {this.state.showReview && (
-            <NewReviewScreen showButtons={false} parent={this} />
-          )}
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-around" }}
-          >
-            <Button
-              type="outline"
-              buttonStyle={styles.button}
-              title={!this.state.showReview ? "Add a review" : "Cancel review"}
-              onPress={this.toggleReviewing.bind(this)}
-            />
-            <Button
-              buttonStyle={styles.button}
-              title={"Save New Customer"}
-              onPress={this.saveCustomer.bind(this)}
-            />
-          </View>
+          <ScrollView>
+            <Text h2>New Customer</Text>
+            <ControlledInput binder={this} propName={"firstName"} />
+            <ControlledInput binder={this} propName={"lastName"} />
+            <ControlledInput binder={this} propName={"address"} />
+            <ControlledInput binder={this} propName={"phone"} />
+            <ControlledInput binder={this} propName={"email"} />
+
+            {this.state.showReview && (
+              <NewReviewScreen showButtons={false} parent={this} />
+            )}
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-around" }}
+            >
+              <Button
+                type="outline"
+                buttonStyle={styles.button}
+                title={
+                  !this.state.showReview ? "Add a review" : "Cancel review"
+                }
+                onPress={this.toggleReviewing.bind(this)}
+              />
+              <Button
+                buttonStyle={styles.button}
+                title={"Save New Customer"}
+                onPress={this.saveCustomer.bind(this)}
+              />
+            </View>
+          </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
     );
