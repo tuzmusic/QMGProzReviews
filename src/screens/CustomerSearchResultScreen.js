@@ -29,20 +29,27 @@ export class CustomerSearchResultScreen extends Component {
       <View style={styles.container}>
         <Text>Found {pluralize("result", results.length, true)}:</Text>
         <View style={styles.resultsContainer}>
-          {results.map(c => {
-            return (
-              <CustomerCell
-                customer={c}
-                key={c.id}
-                onPress={this.props.onCustomerClick.bind(this, c)}
-              />
-            );
-          })}
+          <CustomerList
+            customers={results}
+            onCustomerClick={this.props.onCustomerClick}
+          />
         </View>
       </View>
     );
   }
 }
+
+const CustomerList = ({ customers, onCustomerClick }) => {
+  return customers.map(c => {
+    return (
+      <CustomerCell
+        customer={c}
+        key={c.id}
+        onPress={onCustomerClick.bind(this, c)}
+      />
+    );
+  });
+};
 
 const CustomerCell = ({ customer, onPress }) => (
   <View style={styles.resultContainer} key={customer.id}>
