@@ -20,13 +20,13 @@ export class SearchCustomerScreen extends Component {
   });
 
   automate() {
-    this.setState({ text: "123 Main St" });
-    this.handleSearch();
-    // this.props.navigation.toggleDrawer();
+    // this.setState({ text: "123 Main St" });
+    // this.handleSearch();
+    this.props.navigation.toggleDrawer();
   }
 
   componentDidMount = () => {
-    // setTimeout(this.automate.bind(this), 100);
+    setTimeout(this.automate.bind(this), 100);
   };
 
   state = {

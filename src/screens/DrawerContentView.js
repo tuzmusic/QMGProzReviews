@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, View } from "react-native";
-import { Button, Text } from "react-native-elements";
+import { Button, Text, Image } from "react-native-elements";
 import { DrawerItems, SafeAreaView } from "react-navigation";
 import { connect } from "react-redux";
 import { logout } from "../redux/actions/authActions";
@@ -24,6 +24,11 @@ class DrawerContentView extends Component {
     return (
       <SafeAreaView>
         <ScrollView contentContainerStyle={styles.container}>
+          <Image
+            source={require("../../assets/images/proz-reviews-logo.png")}
+            style={styles.image}
+            containerStyle={{ alignItems: "center" }}
+          />
           <UserSection props={this.props} />
           <DrawerItems {...this.props} />
         </ScrollView>
@@ -66,5 +71,10 @@ const styles = {
   button: {
     margin: 20,
     backgroundColor: "red"
+  },
+  image: {
+    height: 150,
+    width: 150,
+    resizeMode: "contain"
   }
 };
