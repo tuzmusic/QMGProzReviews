@@ -4,9 +4,6 @@ import { Text, ListItem } from "react-native-elements";
 import pluralize from "pluralize";
 
 export class CustomerSearchResultScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    title: "poop";
-  };
   automate() {
     if (this.props.results.length) {
       const c = this.props.results[0];
@@ -27,8 +24,10 @@ export class CustomerSearchResultScreen extends Component {
       </View>
     ) : (
       <View style={styles.container}>
-        <Text>Found {pluralize("result", results.length, true)}:</Text>
-        <View style={styles.resultsContainer}>
+        <View style={{ justifyContent: "center", padding: 15 }}>
+          <Text>Found {pluralize("result", results.length, true)}:</Text>
+        </View>
+        <View style={styles.listContainer}>
           <CustomerList
             customers={results}
             onCustomerClick={this.props.onCustomerClick}
@@ -52,9 +51,13 @@ const CustomerList = ({ customers, onCustomerClick }) => {
 };
 
 const CustomerCell = ({ customer, onPress }) => (
-  <View style={styles.resultContainer} key={customer.id}>
-    <TouchableOpacity onPress={onPress.bind(this, customer)}>
+  <View style={styles.cellContainer}>
+    <TouchableOpacity
+      onPress={onPress.bind(this, customer)}
+      style={styles.opacity}
+    >
       <Text style={styles.result}>{customer.fullName}</Text>
+      <Text style={styles.arrow}>></Text>
     </TouchableOpacity>
   </View>
 );
@@ -62,21 +65,31 @@ const CustomerCell = ({ customer, onPress }) => (
 export default CustomerSearchResultScreen;
 
 const styles = {
-  resultsContainer: { marginTop: 10, width: "100%", alignItems: "flow-end" },
-  resultContainer: {
-    padding: 10,
-    width: "95%",
-    borderBottomWidth: 0.5,
+  listContainer: {
+    width: "97%",
+    alignItems: "center",
     borderTopWidth: 0.5,
     borderColor: "grey"
   },
-  result: { fontSize: 16, fontWeight: "bold" },
+  cellContainer: {
+    padding: 10,
+    width: "100%",
+    borderBottomWidth: 0.5,
+    borderColor: "grey"
+  },
+  opacity: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
   container: {
     flex: 1,
     justifyContent: "flex-start",
-    alignItems: "center",
-    background: "grey"
-    // margin: 20,
-    // padding: 20
+    alignItems: "center"
+  },
+  result: { fontSize: 16, fontWeight: "bold" },
+  arrow: {
+    color: "grey",
+    fontSize: 20
   }
 };
