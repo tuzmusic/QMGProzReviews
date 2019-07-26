@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { View, KeyboardAvoidingView } from "react-native";
-import { Text, Input, Button, Overlay } from "react-native-elements";
+import { Text, Input, Button, Overlay, Image } from "react-native-elements";
 import { connect } from "react-redux";
 import { searchCustomers } from "../redux/action-creators/customerActionCreators";
 
@@ -53,13 +53,16 @@ export class SearchCustomerScreen extends Component {
           enabled
           behavior="height"
         >
+          <Image
+            source={require("../../assets/images/proz-reviews-logo.png")}
+            style={styles.image}
+          />
           <Text h4>Search for your Client </Text>
           <Text style={{ marginTop: 10 }}>What's your client's address?</Text>
           <Input
             inputStyle={styles.input}
             inputContainerStyle={styles.inputContainer}
             clearButtonMode={"while-editing"}
-            containerStyle={{ padding: 0 }}
             placeholder={"Enter address"}
             value={this.state.text}
             onChangeText={text => this.setState({ text })}
@@ -88,12 +91,18 @@ const borderWidth = 0.5;
 const borderRadius = 30;
 const transform = [{ rotateX: "180deg" }];
 const styles = {
+  image: {
+    height: 200,
+    width: 200,
+    resizeMode: "contain"
+  },
   container: {
     width: "100%",
     height: "100%",
     position: "absolute",
     alignItems: "center",
-    top: "30%",
+    justifyContent: "center",
+    top: -70,
     paddingHorizontal: 10
   },
   input: {
